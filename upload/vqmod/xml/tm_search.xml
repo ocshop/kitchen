@@ -1,0 +1,64 @@
+<modification>
+	<id>Live search</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Tm</author>
+	<file name="catalog/controller/product/search.php">
+		<operation error="skip">
+			<search position="replace" offset="1"><![CDATA[ $this->response->setOutput($this->render()); ]]></search>
+			<add><![CDATA[		
+			$this->response->setOutput($this->render());
+  	}
+				public function ajax()
+	{
+		// Contains results
+		$data = array();
+		if( isset($this->request->get['keyword']) ) {
+			// Parse all keywords to lowercase
+			$keywords = strtolower( $this->request->get['keyword'] );
+			// Perform search only if we have some keywords
+			if( strlen($keywords) >= 3 ) {
+				$parts = explode( ' ', $keywords );
+				$add = '';
+				// Generating search
+				foreach( $parts as $part ) {
+					$add .= ' AND (LOWER(pd.name) LIKE "%' . $this->db->escape($part) . '%"';
+					$add .= ' OR LOWER(p.model) LIKE "%' . $this->db->escape($part) . '%")';
+				}
+				$add = substr( $add, 4 );
+				$sql  = 'SELECT pd.product_id, pd.name, p.model, p.image FROM ' . DB_PREFIX . 'product_description AS pd ';
+				$sql .= 'LEFT JOIN ' . DB_PREFIX . 'product AS p ON p.product_id = pd.product_id ';
+				$sql .= 'LEFT JOIN ' . DB_PREFIX . 'product_to_store AS p2s ON p2s.product_id = pd.product_id ';
+				$sql .= 'WHERE ' . $add . ' AND p.status = 1 ';
+				$sql .= 'AND pd.language_id = ' . (int)$this->config->get('config_language_id');
+				$sql .= ' AND p2s.store_id =  ' . (int)$this->config->get('config_store_id'); 
+				$sql .= ' ORDER BY p.sort_order ASC, LOWER(pd.name) ASC, LOWER(p.model) ASC';
+				$sql .= ' LIMIT 15';
+				$res = $this->db->query( $sql );
+				if( $res ) {
+					$data = ( isset($res->rows) ) ? $res->rows : $res->row;
+					$this->load->model('tool/image'); 
+					// For the seo url stuff
+					$basehref = 'product/product&keyword=' . $this->request->get['keyword'] . '&product_id=';
+					foreach( $data as $key => $values ) {
+						if ( $values['image'] ) {
+							$image = $this->model_tool_image->resize($values['image'], $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+						}
+						else {
+							$image = $this->model_tool_image->resize('no_image.jpg', $this->config->get('config_image_cart_width'), $this->config->get('config_image_cart_height'));
+						}
+						$data[$key] = array(
+							'name' => htmlspecialchars_decode($values['name'] . ' (' . $values['model'] . ')', ENT_QUOTES),
+							'href' => $this->url->link($basehref . $values['product_id']),
+							'image' =>$image
+						);
+					}
+				}
+			}
+		}
+		echo json_encode( $data );
+	}
+				]]></add>
+		</operation>
+	</file>
+</modification>

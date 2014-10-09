@@ -1,0 +1,40 @@
+<modification>
+	<id>Header top position</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Tm</author>
+	<file name="admin/controller/module/banner.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ $this->data['heading_title'] = $this->language->get('heading_title'); ]]></search>
+			<add><![CDATA[		
+				$this->data['text_header_top'] = $this->language->get('text_header_top');
+				]]></add>
+		</operation>
+	</file>
+	<file name="admin/language/*/module/banner.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ $_['heading_title']       = 'Banner'; ]]></search>
+			<add><![CDATA[		
+				$_['text_header_top']       = 'Header Top';
+				]]></add>
+		</operation>
+	</file>
+	<file name="admin/view/template/module/banner.tpl">
+		<operation error="skip">
+			<search position="before"><![CDATA[ <?php if ($module['position'] == 'column_right') { ?> ]]></search>
+			<add><![CDATA[		
+				<?php if ($module['position'] == 'header_top') { ?>
+                  <option value="header_top" selected="selected"><?php echo $text_header_top; ?></option>
+                  <?php } else { ?>
+                  <option value="header_top"><?php echo $text_header_top; ?></option>
+                  <?php } ?>
+				]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[ html += '      <option value="column_right"><?php echo $text_column_right; ?></option>'; ]]></search>
+			<add><![CDATA[		
+				html += '      <option value="header_top"><?php echo $text_header_top; ?></option>';
+				]]></add>
+		</operation>
+	</file>
+</modification>

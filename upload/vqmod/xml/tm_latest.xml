@@ -1,0 +1,33 @@
+<modification>
+	<id>Latest module</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Tm</author>
+	<file name="catalog/controller/module/latest.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ 
+				'product_id' => $result['product_id'],]]></search>
+			<add><![CDATA[ 'description' =>html_entity_decode($result['description']),
+				'description1' =>strip_tags (html_entity_decode($result['description'])),
+				]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after"><![CDATA[ 
+				$this->data['heading_title'] = $this->language->get('heading_title');]]></search>
+			<add><![CDATA[ $this->data['button_wishlist'] = $this->language->get('button_wishlist');
+		$this->data['button_compare'] = $this->language->get('button_compare');
+		$this->data['button_details'] = $this->language->get('button_details');
+				]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/module/latest.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ $_['text_reviews']  = 'Based on %s reviews.'; ]]></search>
+			<add><![CDATA[		
+				$_['button_details']          = 'Details';
+				$_['button_compare']          = 'Add to compare';
+				$_['button_wishlist']          = 'Add to wishlist';
+				]]></add>
+		</operation>
+	</file>
+</modification>

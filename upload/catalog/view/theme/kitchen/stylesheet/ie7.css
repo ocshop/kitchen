@@ -1,0 +1,62 @@
+/* God I hate Microsoft! */
+header #logo a img {
+	width:auto
+	}
+.banner>div:hover img {
+	transform: scale(1.1,1.1); 
+	-o-transform: scale(1.1,1.1);
+	-moz-transform: scale(1.1,1.1);
+	-webkit-transform: scale(1.1,1.1);
+	}
+.banner>div:hover h1 {
+	
+	}
+.box .box-content .box-product ul li .cart {
+	float:none;
+	}
+.box .box-content .box-product ul li a.button i {font-size:23px; color:#6c6c6c}
+.box .box-content .box-product ul li a.button:hover i {color:#fff}
+.box .box-content .box-product ul li a.button {
+	width:100%; 
+	text-align:center;
+	line-height:45px;
+	-webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+	position:absolute;
+	z-index:9;
+	bottom:0px;
+	opacity:0
+	}
+.box .box-content .box-product ul li:hover a.button {opacity:1;bottom:-45px;}
+.box .box-content .box-product ul li .image2 {padding:26px 0 20px}
+.box .box-content .box-product ul li {
+	background-color:#f5f6f7;
+	margin-bottom:30px;
+	position:relative;
+	}
+.box .box-content .box-product ul li .price .price-old { font-weight:normal; color:#fff; font-size:15px;}
+.box .box-content .box-product ul li .price {
+	color:#fff;
+	background-color:#909090;
+	display:inline-block;
+	padding:8px 22px 8px 30px
+	}
+
+.box .box-content .box-product ul li .name {
+	padding:25px 30px 26px;
+	line-height:19px;
+	color:#2f2f2f;
+	position:relative;
+	z-index:10;
+	background-color:#f5f6f7;
+	}
+.product-grid ul li {
+	margin-bottom:30px;
+	background-color:#f5f6f7;
+	padding:20px 20px 10px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	}
+.content_bottom .banner .s-desc h3, .content_bottom .banner .s-desc h2 {display:none;}

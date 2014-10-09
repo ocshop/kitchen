@@ -1,0 +1,177 @@
+<modification>
+	<id>Tm description banners</id>
+	<version>1.5.x</version>
+	<vqmver>2.3.0</vqmver>
+	<author>TM</author>
+	<file name="admin/controller/design/banner.php">
+		<operation>
+			<search position="after"><![CDATA[
+            $this->data['heading_title'] = $this->language->get('heading_title');
+            ]]></search>
+			<add><![CDATA[
+            $this->data['entry_description'] = $this->language->get('entry_description');
+            ]]></add>
+		</operation>
+        <operation>
+			<search position="after"><![CDATA[
+            $this->data['banner_images'][] = array(
+            ]]></search>
+			<add><![CDATA[
+			'description'			   => $banner_image['description'],
+            ]]></add>
+		</operation>
+	</file>
+    <file name="admin/model/design/banner.php">
+		<operation>
+			<search position="replace"><![CDATA[
+            $this->db->query("INSERT INTO " . DB_PREFIX . "banner_image_description SET banner_image_id = '" . (int)$banner_image_id . "', language_id = '" . (int)$language_id . "', banner_id = '" . (int)$banner_id . "', title = '" .  $this->db->escape($banner_image_description['title']) . "'");             ]]></search>
+			<add><![CDATA[
+            $this->db->query("INSERT INTO " . DB_PREFIX . "banner_image_description SET banner_image_id = '" . (int)$banner_image_id . "', language_id = '" . (int)$language_id . "', banner_id = '" . (int)$banner_id . "', title = '" .  $this->db->escape($banner_image_description['title']) . "', description = '" .  $this->db->escape($banner_image_description['description']) . "'");
+            ]]></add>
+		</operation>
+        <operation>
+			<search position="after"><![CDATA[
+            $banner_image_description_data[$banner_image_description['language_id']] = array('title' => $banner_image_description['title']);
+            ]]></search>
+			<add><![CDATA[
+			$banner_image_description_desc[$banner_image_description['language_id']] = array ( 'description' => $banner_image_description['description'] );
+            ]]></add>
+		</operation>
+        <operation>
+			<search position="after"><![CDATA[
+            'banner_image_description' => $banner_image_description_data,
+            ]]></search>
+			<add><![CDATA[
+            'description'              => $banner_image_description_desc,
+            ]]></add>
+		</operation>
+	</file>
+    <file name="admin/language/*/design/banner.php">
+		<operation>
+			<search position="before"><![CDATA[
+            ?>
+            ]]></search>
+			<add><![CDATA[
+            $_['entry_description']       = 'Description:';
+            ]]></add>
+		</operation>
+	</file>
+    <file name="admin/view/template/design/banner_form.tpl">
+		<operation>
+			<search position="after"><![CDATA[
+            <td class="left"><?php echo $entry_title; ?></td>
+            ]]></search>
+			<add><![CDATA[
+            <td class="left"><?php echo $entry_description; ?></td>
+            ]]></add>
+		</operation>
+        <operation>
+			<search position="before"><![CDATA[
+            <td class="left"><input type="text" name="banner_image[<?php echo $image_row; ?>][link]" value="<?php echo $banner_image['link']; ?>" /></td>
+            ]]></search>
+			<add><![CDATA[
+            <td>
+              	<?php foreach ($languages as $language) { ?>
+                <textarea style="width:300px; height:150px;" name="banner_image[<?php echo $image_row; ?>][banner_image_description][<?php echo $language['language_id']; ?>][description]" id="description"><?php echo isset($banner_image['description'][$language['language_id']]) ? $banner_image['description'][$language['language_id']]['description'] : ''; ?></textarea>
+                <img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /><br />
+                <?php } ?>
+                </td>
+            ]]></add>
+		</operation>
+        <operation>
+			<search position="before"><![CDATA[
+        	html += '<td class="left"><input type="text" name="banner_image[' + image_row + '][link]" value="" /></td>';
+            ]]></search>
+			<add><![CDATA[
+	 html += '<td class="left">';
+	<?php foreach ($languages as $language) { ?>
+	html += '<textarea style="width:300px; height:150px;" name="banner_image[' + image_row + '][banner_image_description][<?php echo $language['language_id']; ?>][description]" id="description"></textarea><br />';
+    <?php } ?>
+	html += '</td>';
+    ]]></add>
+		</operation>
+	</file>
+    <file name="catalog/controller/module/banner.php">
+		<operation>
+			<search position="before"><![CDATA[
+            'title' => $result['title'],
+            ]]></search>
+			<add><![CDATA[
+            'description' => html_entity_decode($result['description']),
+            ]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/module/newcarousel.php">
+		<operation>
+			<search position="before"><![CDATA[
+            'title' => $result['title'],
+            ]]></search>
+			<add><![CDATA[
+            'description' => html_entity_decode($result['description']),
+            ]]></add>
+		</operation>
+	</file>
+    <file name="catalog/controller/module/slideshow.php">
+		<operation>
+			<search position="before"><![CDATA[
+            'title' => $result['title'],
+            ]]></search>
+			<add><![CDATA[
+            'description' => html_entity_decode($result['description']),
+            ]]></add>
+		</operation>
+	</file>
+    <file name="catalog/controller/module/carousel.php">
+		<operation>
+			<search position="before"><![CDATA[
+            'title' => $result['title'],
+            ]]></search>
+			<add><![CDATA[
+            'description' => html_entity_decode($result['description']),
+            ]]></add>
+		</operation>
+	</file>
+    <file name="catalog/view/theme/*/template/module/slideshow.tpl">
+		<operation>
+			<search position="after"><![CDATA[
+            <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" />
+            ]]></search>
+			<add><![CDATA[
+            <br/><?php echo $banner['description']; ?>
+            ]]></add>
+		</operation>
+        <operation>
+			<search position="after"><![CDATA[
+            <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" /></a>
+            ]]></search>
+			<add><![CDATA[
+            <br/><?php echo $banner['description']; ?>
+            ]]></add>
+		</operation>
+	</file>
+
+	<file name="catalog/view/theme/*/template/module/newcarousel.tpl">
+		<operation>
+			<search position="after"><![CDATA[
+            <div title="<?php echo $banner['title']; ?>" data-thumb="<?php echo $banner['image']; ?>" <?php if ($banner['link']) { ?> data-link="<?php echo $banner['link']; ?>"<?php } ?> data-src="<?php echo $banner['image']; ?>">
+            ]]></search>
+			<add><![CDATA[
+            <?php if ($banner['description']) { ?>
+			<div class="camera_caption fadeIn">
+				<?php echo $banner['description']; ?>
+			</div>
+			<?php } ?>
+            ]]></add>
+		</operation>
+	</file>
+    <!--<file name="catalog/view/theme/*/template/module/carousel.tpl">
+		<operation>
+			<search position="replace"><![CDATA[
+    <li><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" title="<?php echo $banner['title']; ?>" /></a></li>
+            ]]></search>
+			<add><![CDATA[
+    <li><a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" title="<?php echo $banner['title']; ?>" /></a><?php echo $banner['description']; ?><br/></li>
+            ]]></add>
+		</operation>
+	</file>-->
+</modification>

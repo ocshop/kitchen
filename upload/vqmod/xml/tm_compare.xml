@@ -1,0 +1,40 @@
+<modification>
+	<id>Compare</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Tm</author>
+	<file name="catalog/controller/product/compare.php">
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[ if (!in_array($this->request->post['product_id'], $this->session->data['compare'])) {	 ]]></search>
+			<add><![CDATA[		
+				if ((!in_array($this->request->post['product_id'], $this->session->data['compare'])) && (count($this->session->data['compare'])<= 3) ) {	
+				]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace" offset="5"><![CDATA[ $this->session->data['compare'][] = $this->request->post['product_id'];	 ]]></search>
+			<add><![CDATA[		
+				$json['success'] = sprintf($this->language->get('text_success'), $this->url->link('product/product', 'product_id=' . $this->request->post['product_id']), $product_info['name'], $this->url->link('product/compare')); 
+				$this->session->data['compare'][] = $this->request->post['product_id'];
+			} else {
+				if (!in_array($this->request->post['product_id'], $this->session->data['compare'])) {
+						$json['success'] = sprintf($this->language->get('text_error_more'));
+					}else {
+						$json['success'] = sprintf($this->language->get('text_error'));
+						
+					}
+				
+				}
+				$json['total'] = sprintf($this->language->get('text_compare'), (isset($this->session->data['compare']) ? count($this->session->data['compare']) : 0));
+				]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/product/compare.php">
+		<operation error="skip">
+			<search position="replace" offset="3"><![CDATA[ $_['text_empty']        = 'You have not chosen any products to compare.';	 ]]></search>
+			<add><![CDATA[		
+				$_['text_error_more']      = 'Sorry, it\'s not possible to add more than 4 products for comparison.';
+$_['text_error']      = 'The product has been added to comparison list already';
+				]]></add>
+		</operation>
+	</file>
+</modification>

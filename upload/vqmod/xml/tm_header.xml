@@ -1,0 +1,217 @@
+<modification>
+	<id>Header</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Tm</author>
+	<file name="catalog/controller/common/header.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ $this->data['description'] = $this->document->getDescription(); ]]></search>
+			<add><![CDATA[ 
+			$this->data['sitemap'] = $this->url->link('information/sitemap');
+		$this->data['text_sitemap'] = $this->language->get('text_sitemap');
+		$this->data['text_special'] = $this->language->get('text_special');
+		$this->data['special'] = $this->url->link('product/special');
+		$this->data['contact'] = $this->url->link('information/contact');
+		$this->data['text_contact'] = $this->language->get('text_contact');
+		$this->data['telephone'] = $this->config->get('config_telephone');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[ $this->language->load('common/header'); ]]></search>
+			<add><![CDATA[ 
+			$this->data['informations'] = array();
+
+		foreach ($this->model_catalog_information->getInformations() as $result) {
+			if ($result['bottom']) {
+				$this->data['informations'][] = array(
+					'title' => $result['title'],
+					'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
+				);
+			}
+    	}
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[ $this->data['text_home'] = $this->language->get('text_home'); ]]></search>
+			<add><![CDATA[ 
+			$this->data['text_shopcart'] = $this->language->get('text_shopcart');
+			$this->data['text_information'] = $this->language->get('text_information');
+		$this->data['text_service'] = $this->language->get('text_service');
+		$this->data['text_extra'] = $this->language->get('text_extra');
+		$this->data['text_account'] = $this->language->get('text_account');
+		$this->data['text_contact'] = $this->language->get('text_contact');
+		$this->data['text_return'] = $this->language->get('text_return');
+    	$this->data['text_sitemap'] = $this->language->get('text_sitemap');
+		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
+		$this->data['text_voucher'] = $this->language->get('text_voucher');
+		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
+		$this->data['text_special'] = $this->language->get('text_special');
+		$this->data['text_account'] = $this->language->get('text_account');
+		$this->data['text_order'] = $this->language->get('text_order');
+		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[ $this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL'); ]]></search>
+			<add><![CDATA[ 
+			$this->data['contact'] = $this->url->link('information/contact');
+		$this->data['return'] = $this->url->link('account/return/insert', '', 'SSL');
+    	$this->data['sitemap'] = $this->url->link('information/sitemap');
+		$this->data['manufacturer'] = $this->url->link('product/manufacturer', '', 'SSL');
+		$this->data['voucher'] = $this->url->link('account/voucher', '', 'SSL');
+		$this->data['affiliate'] = $this->url->link('affiliate/account', '', 'SSL');
+		$this->data['special'] = $this->url->link('product/special');
+		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
+		$this->data['order'] = $this->url->link('account/order', '', 'SSL');
+		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');		
+		$this->data['text_category'] = $this->language->get('text_category');
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[ 
+				// Menu
+			]]></search>
+			<add><![CDATA[ 
+			/*
+			// Menu
+		]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[ 
+				$this->children = array(
+			]]></search>
+			<add><![CDATA[ 
+			*/
+			$this->children = array(
+		]]></add>
+		</operation>	
+		<operation error="skip">
+			<search position="replace"><![CDATA[ 
+				$this->children = array(
+			]]></search>
+			<add><![CDATA[ 
+			// Menu
+		if (isset($this->request->get['path'])) {
+			$parts = explode('_', (string)$this->request->get['path']);
+		} else {
+			$parts = array();
+		}
+		
+		if ($this->config->get('config_menu_brands')) {
+			$data = array();
+				$this->load->model('catalog/manufacturer');
+				$this->data['manufacturer'] = array();
+				$manufacturers = $this->model_catalog_manufacturer->getManufacturers($data);
+				if($manufacturers){
+				foreach($manufacturers as $manufacturer){
+					$this->data['manufacturer'][] = array(
+					'name' => $manufacturer['name'],
+					'href' => $this->url->link('product/manufacturer/info', 'manufacturer_id='.$manufacturer['manufacturer_id'])
+					);
+				}
+			}
+		}
+		
+		if (isset($parts[0])) {
+			$this->data['category_id'] = $parts[0];
+		} else {
+			$this->data['category_id'] = 0;
+		}
+		
+		if (isset($parts[1])) {
+			$this->data['child_id'] = $parts[1];
+		} else {
+			$this->data['child_id'] = 0;
+		}
+		if (isset($parts[2])) {
+			$this->data['ch3_id'] = $parts[2];
+		} else {
+			$this->data['ch3_id'] = 0;
+		}
+		
+		$this->load->model('catalog/category');
+		$this->load->model('catalog/product');
+		
+		$this->data['categories'] = array();
+					
+		$categories = $this->model_catalog_category->getCategories(0);
+		
+		foreach ($categories as $category) {
+			if ($category['top']) {
+				// Level 2
+				$children_data = array();
+				
+				$children = $this->model_catalog_category->getCategories($category['category_id']);
+				
+				foreach ($children as $child) {
+					$data = array(
+						'filter_category_id'  => $child['category_id'],
+						'filter_sub_category' => true	
+					);		
+					
+					$level3 = $this->model_catalog_category->getCategories($child['category_id']);
+					$l3_data = array();
+					foreach ($level3 as $l3) {
+						$l3_data[] = array(
+							'category_id' => $l3['category_id'],
+							'name'        => $l3['name'],
+							'href'        => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']. '_' . $l3['category_id'])
+						);
+					}
+					
+					$image = DIR_IMAGE.$child['image'];				
+					$children_data[] = array(
+						'category_id' => $child['category_id'],
+						'name'  => $child['name'],
+						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),
+						'thumb' => $image,
+						'children3'    => $l3_data
+					);					
+				}
+				// Level 1
+				$this->data['categories'][] = array(
+					'name'     => $category['name'],
+					'children' => $children_data,
+					'column'   => $category['column'] ? $category['column'] : 1,
+					'href'     => $this->url->link('product/category', 'path=' . $category['category_id']),
+					'category_id' => $category['category_id']
+				);
+			}
+		}
+		
+		$this->children = array(
+			]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="before"><![CDATA[ 'module/currency', ]]></search>
+			<add><![CDATA[ 'common/header_top',]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/common/header.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ $_['text_checkout']       = 'Checkout'; ]]></search>
+			<add><![CDATA[ $_['text_welcome']  = '<li class="login_h"><a href="%s"><i class="icon-lock"></i>Login</a></li> <li><a href="%s"><i class="icon-file-alt"></i>Create an account</a></li>  ';
+$_['text_logged']   = '<li class="login_h"><a href="%s"><i class="icon-file-alt"></i>%s</a></li>  <li><a href="%s"><i class="icon-lock"></i>Logout</a></li> ';
+$_['text_account']  = 'My account';
+$_['text_checkout'] = 'Checkout';
+$_['text_language'] = 'Language';
+$_['text_currency'] = 'Currency';
+$_['text_information']  = 'Information';
+$_['text_service']      = 'Customer Service';
+$_['text_extra']        = 'Extras';
+$_['text_contact']      = 'Contact Us';
+$_['text_return']       = 'Returns';
+$_['text_sitemap']      = 'Site Map';
+$_['text_manufacturer'] = 'Brands';
+$_['text_voucher']      = 'Gift Vouchers';
+$_['text_affiliate']    = 'Affiliates';
+$_['text_special']      = 'Specials';
+$_['text_account']      = 'My Account';
+$_['text_order']        = 'Order History';
+$_['text_newsletter']   = 'Newsletter';
+$_['text_category']   = 'Categories';
+$_['text_latest_added']   = 'Latest added product(s):';
+				]]></add>
+		</operation>
+	</file>
+</modification>

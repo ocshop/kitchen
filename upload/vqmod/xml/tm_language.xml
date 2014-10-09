@@ -1,0 +1,14 @@
+<modification>
+	<id>Language</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Tm</author>
+	<file name="catalog/controller/module/language.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ $this->data['text_language'] = $this->language->get('text_language'); ]]></search>
+			<add><![CDATA[		
+				$this->data['text_language1'] = $this->session->data['language'];
+				]]></add>
+		</operation>
+	</file>
+</modification>

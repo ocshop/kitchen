@@ -1,0 +1,28 @@
+<modification>
+	<id>Cart</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Tm</author>
+	<file name="catalog/controller/module/cart.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ 
+				$this->data['text_empty'] = $this->language->get('text_empty'); ]]></search>
+			<add><![CDATA[ $this->data['text_items2'] = sprintf($this->language->get('text_items2'), $this->cart->countProducts() + (isset($this->session->data['vouchers']) ? count($this->session->data['vouchers']) : 0), $this->currency->format($total));
+			$this->data['text_latest_added'] = $this->language->get('text_latest_added');
+				]]></add>
+		</operation>
+	</file>
+	<file name="catalog/language/*/module/cart.php">
+		<operation error="skip">
+			<search position="after"><![CDATA[ $_['text_checkout'] = 'Checkout'; ]]></search>
+			<add><![CDATA[ $_['text_latest_added'] = 'Latest added product(s):';
+			$_['text_items2']    = '%s';
+				]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[ $_['heading_title'] = 'Shopping Cart'; ]]></search>
+			<add><![CDATA[ $_['heading_title'] = 'Cart:';
+				]]></add>
+		</operation>
+	</file>
+</modification>

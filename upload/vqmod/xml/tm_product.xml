@@ -1,0 +1,21 @@
+<modification>
+	<id>Product</id>
+	<version>1.0.0</version>
+	<vqmver>2.3.0</vqmver>
+	<author>Tm</author>
+	<file name="catalog/controller/product/product.php">
+		<operation error="skip">
+			<search position="before"><![CDATA[ if ($product_info) { ]]></search>
+			<add><![CDATA[		
+				$this->data['product_info'] = $product_info;
+				]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="replace"><![CDATA[ 'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height')) ]]></search>
+			<add><![CDATA[		
+				'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height')),
+				'small' => $this->model_tool_image->resize($result['image'], $this->config->get('config_image_additional_width'), $this->config->get('config_image_additional_height'))
+				]]></add>
+		</operation>
+	</file>
+</modification>
