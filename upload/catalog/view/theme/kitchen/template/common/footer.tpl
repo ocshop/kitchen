@@ -85,11 +85,11 @@
 				
 				
 				<div id="social">
-	   <a target="_blank" href="<?php echo $vk; ?>"><i class=" icon-vk"></i></a>
-	   <a target="_blank" href="<?php echo $fb; ?>"><i class=" icon-facebook"></i></a>
-	   <a target="_blank" href="<?php echo $googleplus; ?>"><i class=" icon-google-plus"></i></a>
-	   <a target="_blank" href="<?php echo $youtube; ?>"><i class=" icon-youtube"></i></a>
-	   <a target="_blank" href="<?php echo $twitter; ?>"><i class=" icon-twitter"></i></a>
+	   <?php if ($vk) { ?><a target="_blank" href="<?php echo $vk; ?>"><i class=" icon-vk"></i></a><?php } ?>
+	   <?php if ($fb) { ?><a target="_blank" href="<?php echo $fb; ?>"><i class=" icon-facebook"></i></a><?php } ?>
+	   <?php if ($googleplus) { ?><a target="_blank" href="<?php echo $googleplus; ?>"><i class=" icon-google-plus"></i></a><?php } ?>
+	   <?php if ($youtube) { ?><a target="_blank" href="<?php echo $youtube; ?>"><i class=" icon-youtube"></i></a><?php } ?>
+	   <?php if ($twitter) { ?><a target="_blank" href="<?php echo $twitter; ?>"><i class=" icon-twitter"></i></a><?php } ?>
 		</div>
 		</div>
 				
