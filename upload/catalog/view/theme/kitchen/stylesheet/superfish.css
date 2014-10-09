@@ -14,7 +14,6 @@
 #menu div div div > ul > li:first-child {border-left:1px solid #e1e1e1;}
 #menu div div div > ul > li {
 	float: left;
-	z-index: 10;
 	position:relative;
 	border-radius:0;
 	
