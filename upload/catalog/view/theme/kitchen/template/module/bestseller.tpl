@@ -63,7 +63,7 @@
 					<div class="clear"></div>
 					<div class="rating">
 						<?php if ($product['rating']) { ?>
-							<img height="13" src="catalog/view/theme/theme152/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" />
+							<img height="13" src="catalog/view/theme/kitchen/image/stars-<?php echo $product['rating']; ?>.png" alt="<?php echo $product['reviews']; ?>" />
 						<?php } ?>
 					</div>
 				</div>
