@@ -3540,6 +3540,7 @@ label{
   overflow: auto;
   padding: 10px 0;
   z-index: 2;
+  clear: both;
 }
 .ui-slider-range.ui-widget-header {
   background: #5a5a5a;
