@@ -233,11 +233,15 @@
         <div id="tab-links">
           <table class="form">
             <tr>
-              <td><?php echo $entry_manufacturer; ?></td>
-              <td><input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
-            </tr>
+			 <td><?php echo $entry_manufacturer; ?></td>
+				<?php if ($manufacturer_id == 0) { ?>
+			 <td><input type="text" name="manufacturer" value="<?php echo $text_none; ?>" /><input type="hidden" name="manufacturer_id" value="0" /></td>
+				<?php } else { ?>
+			 <td><input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" /><input type="hidden" name="manufacturer_id" value="<?php echo $manufacturer_id; ?>" /></td>
+				<?php } ?>
+			</tr>
 			<tr>
-              <td><?php echo $entry_main_category; ?></td>
+			  <td><?php echo $entry_main_category; ?></td>
               <td><select name="main_category_id">
                 <option value="0" selected="selected"><?php echo $text_none; ?></option>
                 <?php foreach ($categories as $category) { ?>
@@ -886,6 +890,20 @@ $('input[name=\'manufacturer\']').autocomplete({
 	focus: function(event, ui) {
       return false;
    }
+});
+
+$('input[name=\'manufacturer\']').blur(function() {
+		if ($(this).val() == '') {
+			$('input[name=\'manufacturer\']').attr('value', '<?php echo $text_none; ?>' );
+			$('input[name=\'manufacturer_id\']').attr('value', 0);
+		};
+});
+
+$('input[name=\'manufacturer\']').focus(function() {
+		if ($('input[name=\'manufacturer_id\']').attr('value') == 0) {
+			$('input[name=\'manufacturer\']').attr('value', '' );
+			$('input[name=\'manufacturer_id\']').attr('value', 0);
+		};
 });
 
 // Category
