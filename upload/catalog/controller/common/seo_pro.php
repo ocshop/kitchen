@@ -49,14 +49,20 @@ class ControllerCommonSeoPro extends Controller {
 				}
 
 				reset($parts);
+			
 				foreach ($parts as $part) {
 					$url = explode('=', $queries[$part], 2);
-
 					if ($url[0] == 'category_id') {
 						if (!isset($this->request->get['path'])) {
 							$this->request->get['path'] = $url[1];
 						} else {
 							$this->request->get['path'] .= '_' . $url[1];
+						}
+					} elseif ($url[0] == 'blid') {
+						if (!isset($this->request->get['blid'])) {
+							$this->request->get['blid'] = $url[1];
+						} else {
+							$this->request->get['blid'] .= '_' . $url[1];
 						}
 					} elseif (count($url) > 1) {
 						$this->request->get[$url[0]] = $url[1];
@@ -65,14 +71,14 @@ class ControllerCommonSeoPro extends Controller {
 			} else {
 				$this->request->get['route'] = 'error/not_found';
 			}
-
+			
 			if (isset($this->request->get['product_id'])) {
 				$this->request->get['route'] = 'product/product';
 				if (!isset($this->request->get['path'])) {
 					$path = $this->getPathByProduct($this->request->get['product_id']);
 					if ($path) $this->request->get['path'] = $path;
 				}
-				
+			
 			//ocshop product download url fix	
 				if (isset($this->request->get['download_id'])) {
 					$this->request->get['route'] = 'product/product/download';
@@ -90,16 +96,16 @@ class ControllerCommonSeoPro extends Controller {
 				$this->request->get['route'] = 'blog/article/download';
 			}	
 			//ocshop blog
-			  elseif (isset($this->request->get['article_id'])) {
+			elseif (isset($this->request->get['article_id'])) {
 				$this->request->get['route'] = 'blog/article';
 				if (!isset($this->request->get['blid'])) {
 					$blid = $this->getPathByArticle($this->request->get['article_id']);
 					if ($blid) $this->request->get['blid'] = $blid;
 				}
+		
 			//ocshop  blog
     		} elseif (isset($this->request->get['blid'])) {
-					$this->request->get['route'] = 'blog/news';
-			
+					$this->request->get['route'] = 'blog/news';			
 			} elseif(isset($this->cache_data['queries'][$route_])) {
 					header($this->request->server['SERVER_PROTOCOL'] . ' 301 Moved Permanently');
 					$this->response->redirect($this->cache_data['queries'][$route_]);
@@ -109,7 +115,7 @@ class ControllerCommonSeoPro extends Controller {
 				}
 			}
 	
-
+	
 			$this->validate();
 
 			if (isset($this->request->get['route'])) {
@@ -244,6 +250,7 @@ class ControllerCommonSeoPro extends Controller {
 				
      			case 'blid':
 				$news = explode('_', $value);
+				
 				foreach ($news as $new) {
 					$queries[] = 'blid=' . $new;
 				}
