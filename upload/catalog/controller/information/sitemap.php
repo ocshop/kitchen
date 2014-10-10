@@ -75,7 +75,7 @@ class ControllerInformationSitemap extends Controller {
 			);
 			}
 			
-			$this->data['$newss'] = array();
+			$this->data['newss'] = array();
 			
 			$newss_1 = $this->model_blog_news->getCategories(0);
 		
