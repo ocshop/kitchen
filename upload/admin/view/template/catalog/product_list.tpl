@@ -336,7 +336,7 @@ $('.filter input').autocomplete({
  $('input[name=\'status\']').live("click", updateStatus);
 		
 	function updateStatus() {
-		var product_id = $(this).parent().parent().parent().parent().find('input:checkbox').attr('value');
+		var product_id = $(this).parent().parent().parent().find('input:checkbox').attr('value');
 		$.post('index.php?route=catalog/product/status&token=<?php echo $token; ?>', 'status=' + ($(this).attr('checked') ? '1' : '0') + '&product_id=' + product_id);
         var text = $(this).next().text() == '<?php echo $text_disabled; ?>' ? '<?php echo $text_enabled; ?>' : '<?php echo $text_disabled; ?>';
         $(this).next().text(text);
@@ -362,7 +362,7 @@ $(".revert").live("click", function () {
 	
 $(".save").live("click", function () {
 	 
-	 var product_id = $(this).parent().parent().parent().parent().find('input:checkbox').attr('value');
+	 var product_id = $(this).parent().parent().parent().find('input:checkbox').attr('value');
 	 var price = $(this).parent().parent().find('input').val();
 	 $.post('index.php?route=catalog/product/price&token=<?php echo $token; ?>', 'price=' + price + '&product_id=' + product_id);
 	 $(this).parent().parent().find('.inlineEdit').text(price).show();
@@ -389,7 +389,7 @@ $(".revertq").live("click", function () {
 	
 $(".saveq").live("click", function () {
 	 
-	 var product_id = $(this).parent().parent().parent().parent().find('input:checkbox').attr('value');
+	 var product_id = $(this).parent().parent().parent().find('input:checkbox').attr('value');
 	 var quantity = $(this).parent().parent().find('input').val();
 	 $.post('index.php?route=catalog/product/quantity&token=<?php echo $token; ?>', 'quantity=' + quantity + '&product_id=' + product_id);
 	 $(this).parent().parent().find('.inlineEditq').text(quantity).show();

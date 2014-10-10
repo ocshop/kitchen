@@ -4,14 +4,14 @@ class ControllerCatalogProduct extends Controller {
 
 	public function price() {
         if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-        $this->db->query("UPDATE " . DB_PREFIX . "product SET price = '" . (integer)$this->request->post['price'] . "' WHERE product_id = '" . (int)$this->request->post['product_id'] . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "product SET price = '" . (float)$this->request->post['price'] . "' WHERE product_id = '" . (int)$this->request->post['product_id'] . "'");
         $this->cache->delete('product');
         }
         }	
 
 	public function quantity() {
         if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-        $this->db->query("UPDATE " . DB_PREFIX . "product SET quantity = '" . (float)$this->request->post['quantity'] . "' WHERE product_id = '" . (int)$this->request->post['product_id'] . "'");
+        $this->db->query("UPDATE " . DB_PREFIX . "product SET quantity = '" . (int)$this->request->post['quantity'] . "' WHERE product_id = '" . (int)$this->request->post['product_id'] . "'");
         $this->cache->delete('product');
         }
         }
