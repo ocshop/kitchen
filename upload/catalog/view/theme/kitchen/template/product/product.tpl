@@ -19,7 +19,7 @@
 		});
 	</script>
 	
-	<?php $i=0; if ($thumb || $images) { $i++  ?>
+	<?php $i=1; if ($thumb || $images) { $i++  ?>
 	<div id="full_gallery">
 		<ul id="gallery">
 			<?php foreach ($images as $image) { ?>
