@@ -196,5 +196,27 @@ function addModule() {
 	
 	module_row++;
 }
-//--></script> 
+//--></script>
+<script>
+	$(function() {
+	$( "#featured-product" ).sortable({
+		update: function( event, ui ) {
+			var arr = [];
+	$('#featured-product').children().children('input').each(
+			function(i,ii){
+			arr.push($(ii).val())
+			});
+	$('input[name=featured_product]').val(arr.join());
+	$('#featured-product').children().each(
+			function(i,ii){
+				if(i%2==0){
+	$(ii).switchClass('odd','even',1000);
+		}else{
+	$(ii).switchClass('even','odd',1000);
+	}
+	});
+	}});
+	$( "#featured-product" ).disableSelection();
+	});
+</script>]]> 
 <?php echo $footer; ?>

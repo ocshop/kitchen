@@ -142,14 +142,20 @@ class ControllerCommonFileManager extends Controller {
 					$json[] = array(
 						'filename' => basename($file),
 						'file'     => utf8_substr($file, utf8_strlen(DIR_IMAGE . 'data/')),
-						'size'     => round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i]
+						'size'     => round(utf8_substr($size, 0, utf8_strpos($size, '.') + 4), 2) . $suffix[$i],
+						'date' 	   => filemtime($file)
 					);
 				}
 			}
 		}
-		
-		$this->response->setOutput(json_encode($json));	
-	}	
+
+		function sort_images_by_date($a, $b){
+			return ($a['date'] == $b['date']) ? 0 : ($a['date'] > $b['date']) ? -1 : 1;
+	}
+			usort($json, "sort_images_by_date");
+			
+		$this->response->setOutput(json_encode($json));
+	}
 	
 	public function create() {
 		$this->load->language('common/filemanager');

@@ -126,6 +126,14 @@ class ModelCatalogProduct extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_reward SET product_id = '" . (int)$product_id . "', customer_group_id = '" . (int)$customer_group_id . "', points = '" . (int)$product_reward['points'] . "'");
 			}
 		}
+		//ocshop benefits
+
+		if (isset($data['product_benefits'])) {
+			foreach ($data['product_benefits'] as $benefit_id) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_benefit SET product_id = '" . (int)$product_id . "', benefit_id = '" . (int)$benefit_id . "'");
+			}
+		}
+		//ocshop benefits
 
 		if (isset($data['product_layout'])) {
 			foreach ($data['product_layout'] as $store_id => $layout) {
@@ -146,7 +154,15 @@ class ModelCatalogProduct extends Model {
 			foreach ($data['product_profiles'] as $profile) {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "product_profile` SET `product_id` = " . (int)$product_id . ", customer_group_id = " . (int)$profile['customer_group_id'] . ", `profile_id` = " . (int)$profile['profile_id']);
 			}
-		} 
+		}
+
+		if (isset($data['product_stickers'])) {
+			foreach ($data['product_stickers'] as $key => $sticker_id) {
+				if ($sticker_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_sticker SET product_id = '" . (int)$product_id . "', position = '" . (int)$key . "', sticker_id = '" . (int)$sticker_id . "'");
+				}
+			}
+		}
 
 		$this->cache->delete('product');
 		
@@ -318,9 +334,29 @@ class ModelCatalogProduct extends Model {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_layout SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout['layout_id'] . "'");
 				}
 			}
+		}		
+//ocshop benefits
+
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_benefit WHERE product_id = '" . (int)$product_id . "'");
+
+		if (isset($data['product_benefits'])) {
+			foreach ($data['product_benefits'] as $benefit_id) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_benefit SET product_id = '" . (int)$product_id . "', benefit_id = '" . (int)$benefit_id . "'");
+			}
 		}
 
+//ocshop benefits
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id. "'");
+		
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_sticker WHERE product_id = '" . (int)$product_id . "'");
+		
+		if (isset($data['product_stickers'])) {
+			foreach ($data['product_stickers'] as $key => $sticker_id) {
+				if ($sticker_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_sticker SET product_id = '" . (int)$product_id . "', position = '" . (int)$key . "', sticker_id = '" . (int)$sticker_id . "'");
+				}
+			}
+		}
 		
 		$this->cache->delete('seo_pro');
         $this->cache->delete('seo_url');
@@ -370,6 +406,9 @@ class ModelCatalogProduct extends Model {
 			$data = array_merge($data, array('product_layout' => $this->getProductLayouts($product_id)));
 			$data = array_merge($data, array('product_store' => $this->getProductStores($product_id)));
 			$data = array_merge($data, array('product_profiles' => $this->getProfiles($product_id)));
+			//ocshop benefits
+			$data = array_merge($data, array('product_benefits' => $this->getBenefits($product_id)));
+			//ocshop benefits
 			$this->addProduct($data);
 		}
 	}
@@ -397,6 +436,10 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "product_profile` WHERE `product_id` = " . (int)$product_id);
 		$this->db->query("DELETE FROM " . DB_PREFIX . "review WHERE product_id = '" . (int)$product_id . "'");
+		
+		//ocshop benefits
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_benefit WHERE product_id = '" . (int)$product_id . "'");
+		//ocshop benefits
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id. "'");
 
@@ -743,8 +786,21 @@ class ModelCatalogProduct extends Model {
 
 	public function getProfiles($product_id) {
 		return $this->db->query("SELECT * FROM `" . DB_PREFIX . "product_profile` WHERE product_id = " . (int)$product_id)->rows;
+	}	
+	//ocshop benefits
+	public function getBenefits($product_id) {
+		
+		$benefits = array();
+	
+		$query  =  $this->db->query("SELECT benefit_id FROM `" . DB_PREFIX . "product_to_benefit` WHERE product_id = " . (int)$product_id);
+	
+		foreach ($query->rows as $result) {
+			$benefits[] = $result['benefit_id'];
+		}
+		
+		return $benefits;
 	}
-
+	//ocshop benefits
 	public function getTotalProducts($data = array()) {
 		$sql = "SELECT COUNT(DISTINCT p.product_id) AS total FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
 

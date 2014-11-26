@@ -30,6 +30,8 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_seomanager'] = $this->language->get('text_seomanager');
 		$this->data['text_vqmod_manager'] = $this->language->get('text_vqmod_manager');
 		$this->data['text_banner'] = $this->language->get('text_banner');
+		$this->data['text_sticker'] = $this->language->get('text_sticker');
+		$this->data['text_benefit'] = $this->language->get('text_benefit');
 		$this->data['text_catalog'] = $this->language->get('text_catalog');
 		$this->data['text_category'] = $this->language->get('text_category');
 		$this->data['text_confirm'] = $this->language->get('text_confirm');
@@ -94,6 +96,8 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_report_product_viewed'] = $this->language->get('text_report_product_viewed');
 		$this->data['text_report_customer_order'] = $this->language->get('text_report_customer_order');
 		$this->data['text_review'] = $this->language->get('text_review');
+		$this->data['text_review_product'] = $this->language->get('text_review_product');
+		$this->data['text_testimonial'] = $this->language->get('text_testimonial');
 		$this->data['text_return'] = $this->language->get('text_return');
 		$this->data['text_return_action'] = $this->language->get('text_return_action');
 		$this->data['text_return_reason'] = $this->language->get('text_return_reason');
@@ -137,6 +141,8 @@ class ControllerCommonHeader extends Controller {
 			$this->data['seomanager'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['vqmod_manager'] = $this->url->link('tool/vqmod_manager', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['banner'] = $this->url->link('design/banner', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['sticker'] = $this->url->link('design/sticker', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['benefit'] = $this->url->link('design/benefit', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['category'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');
 			
 			$this->load->model('setting/extension');
@@ -194,7 +200,8 @@ class ControllerCommonHeader extends Controller {
 			$this->data['report_customer_reward'] = $this->url->link('report/customer_reward', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_customer_credit'] = $this->url->link('report/customer_credit', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_affiliate_commission'] = $this->url->link('report/affiliate_commission', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['review'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['review_product'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['testimonial'] = $this->url->link('catalog/testimonial', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['return'] = $this->url->link('sale/return', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['return_action'] = $this->url->link('localisation/return_action', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['return_reason'] = $this->url->link('localisation/return_reason', 'token=' . $this->session->data['token'], 'SSL');

@@ -1,6 +1,7 @@
 <?php 
 class ControllerBlogLatest extends Controller { 	
 	public function index() { 
+	
 		$this->language->load('blog/latest');
 
 		$this->load->model('blog/article');
@@ -36,7 +37,13 @@ class ControllerBlogLatest extends Controller {
 		}
 
 		$this->document->setTitle($this->language->get('heading_title'));
-		$this->document->addStyle('catalog/view/theme/default/stylesheet/blog.css');
+		
+		if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/blog.css')) {
+			$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/blog.css');
+		} else {
+			$this->document->addStyle('catalog/view/theme/default/stylesheet/blog.css');
+		}
+		
 		$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 		$this->document->addScript('catalog/view/javascript/jquery/jail/jail.min.js');
 
@@ -65,12 +72,6 @@ class ControllerBlogLatest extends Controller {
 		if (isset($this->request->get['limit'])) {
 			$url .= '&limit=' . $this->request->get['limit'];
 		}
-
-		$this->data['breadcrumbs'][] = array(
-			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('blog/latest', $url),
-			'separator' => $this->language->get('text_separator')
-		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
 

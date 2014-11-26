@@ -21,6 +21,7 @@ $_['entry_status']      = 'Status:';
 $_['entry_text']        = 'Text:';
 $_['entry_good']        = 'Good';
 $_['entry_bad']         = 'Bad';
+$_['entry_date_added']  = 'Date:';
 
 // Error
 $_['error_permission']  = 'Warning: You do not have permission to modify reviews!';

@@ -293,6 +293,7 @@ class ControllerBlogReviewArticle extends Controller {
 		$this->data['entry_text'] = $this->language->get('entry_text');
 		$this->data['entry_good'] = $this->language->get('entry_good');
 		$this->data['entry_bad'] = $this->language->get('entry_bad');
+		$this->data['entry_date_added'] = $this->language->get('entry_date_added');
 
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
@@ -393,6 +394,14 @@ class ControllerBlogReviewArticle extends Controller {
 			$this->data['author'] = $review_article_info['author'];
 		} else {
 			$this->data['author'] = '';
+		}
+		
+		if (isset($this->request->post['date_added'])) {
+			$this->data['date_added'] = $this->request->post['date_added'];
+		} elseif (!empty($review_article_info)) {
+			$this->data['date_added'] = $review_article_info['date_added'];
+		} else {
+			$this->data['date_added'] = date('Y-m-d H:m:s');
 		}
 
 		if (isset($this->request->post['text'])) {

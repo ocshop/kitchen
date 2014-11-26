@@ -48,6 +48,8 @@ class ControllerModuleFeatured extends Controller {
 				} else {
 					$rating = false;
 				}
+				
+				$stickers = $this->getStickers($product_info['product_id']) ;
 					
 				$this->data['products'][] = array(
 					'product_id' => $product_info['product_id'],
@@ -56,6 +58,7 @@ class ControllerModuleFeatured extends Controller {
 					'price'   	 => $price,
 					'special' 	 => $special,
 					'rating'     => $rating,
+					'sticker'     => $stickers,
 					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
 					'href'    	 => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
 				);
@@ -69,6 +72,34 @@ class ControllerModuleFeatured extends Controller {
 		}
 
 		$this->render();
+	}
+	
+	private function getStickers($product_id) {
+	
+ 	$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;	
+		
+		if (!$stickers) {
+			return;
+		}
+		
+		$this->data['stickers'] = array();
+		
+		foreach ($stickers as $sticker) {
+			$this->data['stickers'][] = array(
+				'position' => $sticker['position'],
+				'image'    => HTTP_SERVER . 'image/' . $sticker['image']
+			);		
+		}
+
+	
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/stickers.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/product/stickers.tpl';
+		} else {
+			$this->template = 'default/template/product/stickers.tpl';
+		}
+	
+		return $this->render();
+	
 	}
 }
 ?>

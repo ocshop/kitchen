@@ -10,6 +10,7 @@ class ControllerAccountAccount extends Controller {
 		$this->language->load('account/account');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -34,6 +35,7 @@ class ControllerAccountAccount extends Controller {
 		}
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['text_my_account'] = $this->language->get('text_my_account');
 		$this->data['text_my_orders'] = $this->language->get('text_my_orders');

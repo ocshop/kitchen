@@ -12,6 +12,7 @@ class ControllerAccountReturn extends Controller {
 		$this->language->load('account/return');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setRobots('noindex,follow');
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
@@ -42,6 +43,7 @@ class ControllerAccountReturn extends Controller {
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['text_return_id'] = $this->language->get('text_return_id');
 		$this->data['text_order_id'] = $this->language->get('text_order_id');
@@ -128,6 +130,8 @@ class ControllerAccountReturn extends Controller {
 
 		if ($return_info) {
 			$this->document->setTitle($this->language->get('text_return'));
+			
+			$this->document->setRobots('noindex,follow');
 
 			$this->data['breadcrumbs'] = array();
 
@@ -162,6 +166,8 @@ class ControllerAccountReturn extends Controller {
 			);			
 
 			$this->data['heading_title'] = $this->language->get('text_return');
+			
+			$this->document->setRobots('noindex,follow');
 
 			$this->data['text_return_detail'] = $this->language->get('text_return_detail');
 			$this->data['text_return_id'] = $this->language->get('text_return_id');
@@ -236,6 +242,8 @@ class ControllerAccountReturn extends Controller {
 			$this->response->setOutput($this->render());		
 		} else {
 			$this->document->setTitle($this->language->get('text_return'));
+			
+			$this->document->setRobots('noindex,follow');
 
 			$this->data['breadcrumbs'] = array();
 
@@ -270,6 +278,8 @@ class ControllerAccountReturn extends Controller {
 			);
 
 			$this->data['heading_title'] = $this->language->get('text_return');
+			
+			$this->document->setRobots('noindex,follow');
 
 			$this->data['text_error'] = $this->language->get('text_error');
 
@@ -310,6 +320,8 @@ class ControllerAccountReturn extends Controller {
 		}
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -332,6 +344,7 @@ class ControllerAccountReturn extends Controller {
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['text_description'] = $this->language->get('text_description');
 		$this->data['text_order'] = $this->language->get('text_order');
@@ -571,7 +584,8 @@ class ControllerAccountReturn extends Controller {
 	public function success() {
 		$this->language->load('account/return');
 
-		$this->document->setTitle($this->language->get('heading_title')); 
+		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -588,6 +602,8 @@ class ControllerAccountReturn extends Controller {
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['text_message'] = $this->language->get('text_message');
 

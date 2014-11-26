@@ -7,12 +7,16 @@ class ControllerCommonFooter extends Controller {
 		$this->data['text_service'] = $this->language->get('text_service');
 		$this->data['text_extra'] = $this->language->get('text_extra');
 		$this->data['text_contact'] = $this->language->get('text_contact');
+		$this->data['text_abuses'] = $this->language->get('text_abuses');
 		$this->data['text_return'] = $this->language->get('text_return');
+		$this->data['text_testimonial'] = $this->language->get('text_testimonial');
 		$this->data['text_sitemap'] = $this->language->get('text_sitemap');
 		$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 		$this->data['text_voucher'] = $this->language->get('text_voucher');
 		$this->data['text_affiliate'] = $this->language->get('text_affiliate');
 		$this->data['text_special'] = $this->language->get('text_special');
+		$this->data['text_bestseller'] = $this->language->get('text_bestseller');
+		$this->data['text_mostviewed'] = $this->language->get('text_mostviewed');
 		$this->data['text_latest'] = $this->language->get('text_latest');
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_order'] = $this->language->get('text_order');
@@ -33,12 +37,16 @@ class ControllerCommonFooter extends Controller {
 		}
 
 		$this->data['contact'] = $this->url->link('information/contact');
+		$this->data['abuses'] = $this->url->link('information/abuses');
 		$this->data['return'] = $this->url->link('account/return/insert', '', 'SSL');
+		$this->data['testimonial'] = $this->url->link('product/testimonial');
 		$this->data['sitemap'] = $this->url->link('information/sitemap');
 		$this->data['manufacturer'] = $this->url->link('product/manufacturer');
 		$this->data['voucher'] = $this->url->link('account/voucher', '', 'SSL');
 		$this->data['affiliate'] = $this->url->link('affiliate/account', '', 'SSL');
 		$this->data['special'] = $this->url->link('product/special');
+		$this->data['bestseller'] = $this->url->link('product/bestseller');
+		$this->data['mostviewed'] = $this->url->link('product/mostviewed');
 		$this->data['latest'] = $this->url->link('product/latest');
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
 		$this->data['order'] = $this->url->link('account/order', '', 'SSL');

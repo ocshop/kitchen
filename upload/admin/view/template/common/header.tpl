@@ -93,7 +93,12 @@ $(document).ready(function(){
           <li><a href="<?php echo $option; ?>"><?php echo $text_option; ?></a></li>
           <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
           <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-          <li><a href="<?php echo $review; ?>"><?php echo $text_review; ?></a></li>
+		  <li><a class="parent"><?php echo $text_review; ?></a>
+            <ul>
+              <li><a href="<?php echo $review_product; ?>"><?php echo $text_review_product; ?></a></li>
+              <li><a href="<?php echo $testimonial; ?>"><?php echo $text_testimonial; ?></a></li>
+            </ul>
+          </li>
           <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
         </ul>
       </li>
@@ -154,6 +159,8 @@ $(document).ready(function(){
             <ul>
               <li><a href="<?php echo $layout; ?>"><?php echo $text_layout; ?></a></li>
               <li><a href="<?php echo $banner; ?>"><?php echo $text_banner; ?></a></li>
+			  <li><a href="<?php echo $sticker; ?>"><?php echo $text_sticker; ?></a></li>
+			  <li><a href="<?php echo $benefit; ?>"><?php echo $text_benefit; ?></a></li>
             </ul>
           </li>
           <li><a class="parent"><?php echo $text_users; ?></a>

@@ -20,7 +20,6 @@ $_['entry_captcha']     = 'Введите код, указанный на кар
 // Tabs
 $_['tab_related']       = 'Похожие статьи';
 $_['tab_related_product']       = 'Сопутствующие Товары';
-$_['tab_review']       = 'Отзывы';
  
 
 // Error

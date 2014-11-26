@@ -1,8 +1,5 @@
 User-agent: *
-Disallow: /*route=account/
-Disallow: /*route=affiliate/
 Disallow: /*route=checkout/
-Disallow: /*route=product/search
 Disallow: /index.php?route=product/product*&manufacturer_id=
 Disallow: /admin
 Disallow: /catalog
@@ -28,10 +25,7 @@ Disallow: /*?route=common/home
 Disallow: /*?product_id
 
 User-agent: Yandex
-Disallow: /*route=account/
-Disallow: /*route=affiliate/
 Disallow: /*route=checkout/
-Disallow: /*route=product/search
 Disallow: /index.php?route=product/product*&manufacturer_id=
 Disallow: /admin
 Disallow: /catalog

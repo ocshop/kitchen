@@ -259,6 +259,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_share'] = $this->language->get('text_share');
 			$this->data['text_wait'] = $this->language->get('text_wait');
 			$this->data['text_tags'] = $this->language->get('text_tags');
+			$this->data['text_benefits'] = $this->language->get('text_benefits');
 
 			$this->data['entry_name'] = $this->language->get('entry_name');
 			$this->data['entry_review'] = $this->language->get('entry_review');
@@ -352,6 +353,36 @@ class ControllerProductProduct extends Controller {
 					'price'    => $this->currency->format($this->tax->calculate($discount['price'], $product_info['tax_class_id'], $this->config->get('config_tax')))
 				);
 			}
+			
+			//ocshop benefits
+			$productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($product_info['product_id']);
+			
+			$this->data['benefits'] = array();
+				
+			foreach ($productbenefits as $benefit) {
+				if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+					$bimage = $benefit['image'];
+					if ($benefit['type']) {
+						$bimage = $this->model_tool_image->resize($bimage, 25, 25);
+					} else {
+						$bimage = $this->model_tool_image->resize($bimage, 350, 140);
+					}
+				} else {
+					$bimage = 'no_image.jpg';
+				}
+
+				$this->data['benefits'][] = array(
+					'benefit_id'      	=> $benefit['benefit_id'],
+					'name'      		=> $benefit['name'],
+					'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
+					'thumb'      		=> $bimage,
+					'link'      		=> $benefit['link'],
+					'type'      		=> $benefit['type']
+					//'sort_order' => $benefit['sort_order']
+				);
+			}
+
+			//ocshop benefits
 
 			$this->data['options'] = array();
 
@@ -409,6 +440,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['rating'] = (int)$product_info['rating'];
 			$this->data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$this->data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
+			$this->data['sticker'] = $this->getStickers($product_info['product_id']);
 
 			$this->data['products'] = array();
 
@@ -438,6 +470,39 @@ class ControllerProductProduct extends Controller {
 				} else {
 					$rating = false;
 				}
+				
+				$stickers = $this->getStickers($result['product_id']) ;
+				
+				
+				//ocshop benefits
+				$productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($result['product_id']);
+				
+				$benefits = array();
+				
+				foreach ($productbenefits as $benefit) {
+					if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+						$bimage = $benefit['image'];
+						if ($benefit['type']) {
+							$bimage = $this->model_tool_image->resize($bimage, 25, 25);
+						} else {
+							$bimage = $this->model_tool_image->resize($bimage, 120, 60);
+						}
+					} else {
+						$bimage = 'no_image.jpg';
+					}
+
+					$benefits[] = array(
+						'benefit_id'      	=> $benefit['benefit_id'],
+						'name'      		=> $benefit['name'],
+						'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
+						'thumb'      		=> $bimage,
+						'link'      		=> $benefit['link'],
+						'type'      		=> $benefit['type']
+						//'sort_order' => $benefit['sort_order']
+					);
+				}
+
+				//ocshop benefits
 
 				$this->data['products'][] = array(
 					'product_id' => $result['product_id'],
@@ -446,6 +511,8 @@ class ControllerProductProduct extends Controller {
 					'price'   	 => $price,
 					'special' 	 => $special,
 					'rating'     => $rating,
+					'sticker'     => $stickers,
+					'benefits'    => $benefits,
 					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
 					'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
@@ -478,6 +545,8 @@ class ControllerProductProduct extends Controller {
 				} else {
 					$rating = false;
 				}
+				
+				$stickers = $this->getStickers($result['product_id']) ;
 							
 				$this->data['products2'][] = array(
 					'product_id' => $result['product_id'],
@@ -486,6 +555,7 @@ class ControllerProductProduct extends Controller {
 					'price'   	 => $price,
 					'special' 	 => $special,
 					'rating'     => $rating,
+					'sticker'     => $stickers,
 					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
 					'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 				);
@@ -753,12 +823,15 @@ class ControllerProductProduct extends Controller {
 	}
 
 	public function write() {
+	
+    	$this->load->model('catalog/review');
+	
+		$this->load->model('catalog/product');
+		
 		$this->language->load('product/product');
-
-		$this->load->model('catalog/review');
-
+		
 		$json = array();
-
+		
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 25)) {
 				$json['error'] = $this->language->get('error_name');
@@ -777,8 +850,27 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if (!isset($json['error'])) {
+			
+				$product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
+			    $message = $this->language->get('text_message');
+				$message.= $this->language->get('text_poduct'). strip_tags($product_info['name']).'<br>';
+				$message.= $this->language->get('text_reviewer').strip_tags($this->request->post['name']).'<br>';
+				$message.= $this->language->get('text_rating'). strip_tags($this->request->post['rating']).'<br><br>';
+				$message.= $this->language->get('text_text') . '<br>';
+				$message.= strip_tags($this->request->post['text']) . '<br>';
+				
+				$message.='<a href="'.html_entity_decode(HTTP_SERVER . 'admin/index.php').'">'.$this->language->get('text_login').'</a>';
+				$this->log->write(HTTP_SERVER . '/admin/index.php');
 				$this->model_catalog_review->addReview($this->request->get['product_id'], $this->request->post);
-
+				
+				$mail = new Mail($this->config->get('config_mail_protocol'), $this->config->get('config_smtp_host'), $this->config->get('config_smtp_username'), html_entity_decode($this->config->get('config_smtp_password')), $this->config->get('config_smtp_port'), $this->config->get('config_smtp_timeout'));
+				$mail->setTo(array($this->config->get('config_email')));
+				$mail->setFrom($this->config->get('config_email'));
+				$mail->setSender($this->config->get('config_name'));
+				$mail->setSubject($this->language->get('text_subject'));
+				$mail->setHtml($message);
+				$mail->send();
+			
 				$json['success'] = $this->language->get('text_success');
 			}
 		}
@@ -853,6 +945,34 @@ class ControllerProductProduct extends Controller {
 		}	
 
 		$this->response->setOutput(json_encode($json));		
+	}
+	
+	private function getStickers($product_id) {
+	
+ 	$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;	
+		
+		if (!$stickers) {
+			return;
+		}
+		
+		$this->data['stickers'] = array();
+		
+		foreach ($stickers as $sticker) {
+			$this->data['stickers'][] = array(
+				'position' => $sticker['position'],
+				'image'    => HTTP_SERVER . 'image/' . $sticker['image']
+			);		
+		}
+
+	
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/stickers.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/product/stickers.tpl';
+		} else {
+			$this->template = 'default/template/product/stickers.tpl';
+		}
+	
+		return $this->render();
+	
 	}
 }
 ?>

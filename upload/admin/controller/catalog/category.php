@@ -200,6 +200,7 @@ class ControllerCatalogCategory extends Controller {
 		$this->data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$this->data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$this->data['entry_description'] = $this->language->get('entry_description');
+		$this->data['entry_description_bottom'] = $this->language->get('entry_description_bottom');
 		$this->data['entry_parent'] = $this->language->get('entry_parent');
 		$this->data['entry_filter'] = $this->language->get('entry_filter');
 		$this->data['entry_store'] = $this->language->get('entry_store');

@@ -53,6 +53,8 @@ class ControllerProductCompare extends Controller {
 		$this->data['text_weight'] = $this->language->get('text_weight');
 		$this->data['text_dimension'] = $this->language->get('text_dimension');
 		$this->data['text_empty'] = $this->language->get('text_empty');
+		$this->data['text_benefits'] = $this->language->get('text_benefits');
+		$this->data['text_present'] = $this->language->get('text_present');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 		$this->data['button_cart'] = $this->language->get('button_cart');
@@ -111,6 +113,38 @@ class ControllerProductCompare extends Controller {
 						$attribute_data[$attribute['attribute_id']] = $attribute['text'];
 					}
 				}
+				
+				$stickers = $this->getStickers($product_id) ;
+				
+				//ocshop benefits
+				$productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($product_id);
+				
+				$benefits = array();
+				
+				foreach ($productbenefits as $benefit) {
+					if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+						$bimage = $benefit['image'];
+						if ($benefit['type']) {
+							$bimage = $this->model_tool_image->resize($bimage, 25, 25);
+						} else {
+							$bimage = $this->model_tool_image->resize($bimage, 120, 60);
+						}
+					} else {
+						$bimage = 'no_image.jpg';
+					}
+
+					$benefits[] = array(
+						'benefit_id'      	=> $benefit['benefit_id'],
+						'name'      		=> $benefit['name'],
+						'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
+						'thumb'      		=> $bimage,
+						'link'      		=> $benefit['link'],
+						'type'      		=> $benefit['type']
+						//'sort_order' => $benefit['sort_order']
+					);
+				}
+
+				//ocshop benefits
 
 				$this->data['products'][$product_id] = array(
 					'product_id'   => $product_info['product_id'],
@@ -123,6 +157,8 @@ class ControllerProductCompare extends Controller {
 					'manufacturer' => $product_info['manufacturer'],
 					'availability' => $availability,
 					'rating'       => (int)$product_info['rating'],
+					'sticker'     => $stickers,
+					'benefits'    => $benefits,
 					'reviews'      => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
 					'weight'       => $this->weight->format($product_info['weight'], $product_info['weight_class_id']),
 					'length'       => $this->length->format($product_info['length'], $product_info['length_class_id']),
@@ -199,6 +235,34 @@ class ControllerProductCompare extends Controller {
 		}	
 
 		$this->response->setOutput(json_encode($json));
+	}
+	
+	private function getStickers($product_id) {
+	
+ 	$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;	
+		
+		if (!$stickers) {
+			return;
+		}
+		
+		$this->data['stickers'] = array();
+		
+		foreach ($stickers as $sticker) {
+			$this->data['stickers'][] = array(
+				'position' => $sticker['position'],
+				'image'    => HTTP_SERVER . 'image/' . $sticker['image']
+			);		
+		}
+
+	
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/stickers.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/product/stickers.tpl';
+		} else {
+			$this->template = 'default/template/product/stickers.tpl';
+		}
+	
+		return $this->render();
+	
 	}
 }
 ?>

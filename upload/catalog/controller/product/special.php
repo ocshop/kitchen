@@ -85,6 +85,7 @@ class ControllerProductSpecial extends Controller {
 		$this->data['text_grid'] = $this->language->get('text_grid');		
 		$this->data['text_sort'] = $this->language->get('text_sort');
 		$this->data['text_limit'] = $this->language->get('text_limit');
+		$this->data['text_benefits'] = $this->language->get('text_benefits');
 
 		$this->data['button_cart'] = $this->language->get('button_cart');	
 		$this->data['button_wishlist'] = $this->language->get('button_wishlist');
@@ -139,6 +140,38 @@ class ControllerProductSpecial extends Controller {
 			} else {
 				$rating = false;
 			}
+			
+			$stickers = $this->getStickers($result['product_id']) ;
+			
+			//ocshop benefits
+				$productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($result['product_id']);
+				
+				$benefits = array();
+				
+				foreach ($productbenefits as $benefit) {
+					if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+						$bimage = $benefit['image'];
+						if ($benefit['type']) {
+							$bimage = $this->model_tool_image->resize($bimage, 25, 25);
+						} else {
+							$bimage = $this->model_tool_image->resize($bimage, 120, 60);
+						}
+					} else {
+						$bimage = 'no_image.jpg';
+					}
+
+					$benefits[] = array(
+						'benefit_id'      	=> $benefit['benefit_id'],
+						'name'      		=> $benefit['name'],
+						'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
+						'thumb'      		=> $bimage,
+						'link'      		=> $benefit['link'],
+						'type'      		=> $benefit['type']
+						//'sort_order' => $benefit['sort_order']
+					);
+				}
+
+				//ocshop benefits
 
 			$this->data['products'][] = array(
 				'product_id'  => $result['product_id'],
@@ -152,6 +185,8 @@ class ControllerProductSpecial extends Controller {
 				'special'     => $special,
 				'tax'         => $tax,
 				'rating'      => $result['rating'],
+				'sticker'     => $stickers,
+				'benefits'    => $benefits,
 				'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
 				'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
 			);
@@ -288,6 +323,34 @@ class ControllerProductSpecial extends Controller {
 		);
 
 		$this->response->setOutput($this->render());			
+	}
+	
+	private function getStickers($product_id) {
+	
+ 	$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;	
+		
+		if (!$stickers) {
+			return;
+		}
+		
+		$this->data['stickers'] = array();
+		
+		foreach ($stickers as $sticker) {
+			$this->data['stickers'][] = array(
+				'position' => $sticker['position'],
+				'image'    => HTTP_SERVER . 'image/' . $sticker['image']
+			);		
+		}
+
+	
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/stickers.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/product/stickers.tpl';
+		} else {
+			$this->template = 'default/template/product/stickers.tpl';
+		}
+	
+		return $this->render();
+	
 	}
 }
 ?>

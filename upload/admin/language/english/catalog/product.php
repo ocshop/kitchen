@@ -108,6 +108,14 @@ $_['text_length_month']      = 'Month';
 $_['text_length_month_semi'] = 'Semi Month';
 $_['text_length_year']       = 'Year';
 
+//stickers
+$_['text_corner0']           = 'Top Left';
+$_['text_corner1']           = 'Top Right';
+$_['text_corner2']           = 'Bottom Left';
+$_['text_corner3']           = 'Bottom Right';
+$_['entry_sticker']          = 'Promotional Stickers:';
+$_['text_benefits']         = 'Benefits:';
+
 // Error
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';
 $_['error_permission']       = 'Warning: You do not have permission to modify products!';

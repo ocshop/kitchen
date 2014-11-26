@@ -134,6 +134,14 @@ $_['entry_google_analytics']       = 'Google Analytics Code:<br /><span class="h
 $_['entry_seo_url_type']         = 'Type Friendly URL:';
 $_['entry_seo_url_include_path'] = 'Friendly URL goods categories:<span class="help">/category/subcategory/product<br />(Only SeoPro)</span>';
 $_['entry_seo_url_postfix']      = 'End Friendly URL:<span class="help">For example. html<br />(Only SeoPro)</span>';
+$_['entry_sms_gatename']       = 'Сервис отправки SMS:';
+$_['entry_sms_to']             = 'Номер телефона получателя:<br/><span class="help">В международном формате, только цифры 7926xxxxxxx</span>';
+$_['entry_sms_from']           = 'Псевдоним отправителя:<br/><span class="help">Не более 11 символов, либо номер телефона до 15 цифр</span>';
+$_['entry_sms_message']        = 'Текст сообщения:<br/><span class="help">Можно использовать теги:<br/>{ID} - номер заказа<br/>{DATE} - дата заказа<br/>{TIME} - время заказа<br/>{SUM} - сумма заказа<br/>{FIRST_NAME} - имя клиента<br/>{LAST_NAME} - фамилия клиента<br/>{PHONE} - телефон клиента</span>';
+$_['entry_sms_gate_username']  = 'Логин на SMS шлюз:';
+$_['entry_sms_gate_password']  = 'Пароль на SMS шлюз:';
+$_['entry_sms_alert']          = 'Включить SMS уведомления:';
+$_['entry_sms_copy']           = 'Дополнительные номера:<br/><span class="help">Указывать через запятую, в международном формате, без разделителей 7926xxxxxxx</span>';
 
 // Error
 $_['error_warning']                = 'Warning: Please check the form carefully for errors!';

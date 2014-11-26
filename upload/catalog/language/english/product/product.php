@@ -27,6 +27,7 @@ $_['text_wait']         = 'Please Wait!';
 $_['text_tags']         = 'Tags:';
 $_['text_error']        = 'Product not found!';
 $_['text_payment_profile'] = 'Payment Profiles';
+$_['text_benefits']     = 'Benefits:';
 
 $_['text_trial_description'] = '%s every %d %s(s) for %d payment(s) then';
 $_['text_payment_description'] = '%s every %d %s(s) for %d payment(s)';
@@ -54,6 +55,15 @@ $_['tab_related']       = 'Similar';
 
 // Buttons
 $_['button_edit_product']    = 'Edit product';
+
+//review mail
+$_['text_message']        	= '<strong>New review is pending approval.</strong><br><br>';
+$_['text_poduct']       	= 'Poduct: ';
+$_['text_reviewer']      	= '<br><br>Reviewed left: ';
+$_['text_rating'] 			= '<br>Rating: ';
+$_['text_login']       		= 'Login to Review';
+$_['text_text']       		= '<br>Review text: ';
+$_['text_subject']       	= 'You got a review on this product';
 
 // Error
 $_['error_name']        = 'Warning: Review Name must be between 3 and 25 characters!';

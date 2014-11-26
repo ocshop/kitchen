@@ -28,7 +28,8 @@ $_['entry_sort_order']   = 'Sort Order:';
 $_['entry_type']         = 'Type:';
 $_['entry_meta_keyword'] = 'Meta Tag Keywords:';
 $_['entry_meta_description'] = 'Meta Tag Description:';
-$_['entry_description']  = 'Description:';
+$_['entry_description']  = 'Description Top:';
+$_['entry_description_bottom']  = 'Description Bottom:';
 $_['entry_seo_title']    = 'HTML Tag Title:';
 $_['entry_seo_h1']       = 'HTML Tag H1:';
 

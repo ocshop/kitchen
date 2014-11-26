@@ -336,7 +336,7 @@ $('.filter input').autocomplete({
  $('input[name=\'status\']').live("click", updateStatus);
 		
 	function updateStatus() {
-		var product_id = $(this).parent().parent().parent().find('input:checkbox').attr('value');
+		 var product_id = $(this).parent().parent().parent().find('input:checkbox').attr('value');
 		$.post('index.php?route=catalog/product/status&token=<?php echo $token; ?>', 'status=' + ($(this).attr('checked') ? '1' : '0') + '&product_id=' + product_id);
         var text = $(this).next().text() == '<?php echo $text_disabled; ?>' ? '<?php echo $text_enabled; ?>' : '<?php echo $text_disabled; ?>';
         $(this).next().text(text);
@@ -352,6 +352,7 @@ function updatePrice() {
 	    var  revert= '<a class="revert"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>'
 		$(this).after('<div class="editor"><input type="text" name="price" value="' + $(this).text() + '" size="30" />' + save + revert +'</div>');
 		$(this).hide();
+		$( this ).parent().find('input').focus();
 };
     
 
@@ -379,6 +380,7 @@ function updateTextq() {
 	    var  revertq= '<a class="revertq"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>'
 		$(this).after('<div class="editor"><input type="text" name="quantity" value="' + $(this).text() + '" size="30" />' + saveq + revertq +'</div>');
 		$(this).hide();
+		$( this ).parent().find('input').focus();
 };
     
 
@@ -405,6 +407,7 @@ function updateTextm() {
 	    var  revertm= '<a class="revertm"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>'
 		$(this).after('<div class="editor"><input type="text" name="model" value="' + $(this).text() + '" size="30" />' + savem + revertm +'</div>');
 		$(this).hide();
+		$( this ).parent().find('input').focus();
 };
     
 
@@ -430,6 +433,7 @@ function updateTextn() {
 	    var  revertn= '<a class="revertn"><img src="view/image/delete.png" alt="<?php echo $button_cancel; ?>" title="<?php echo $button_cancel; ?>" /></a>'
 		$(this).after('<div class="editor"><input type="text" name="name" value="' + $(this).text() + '" size="55" />' + saven + revertn +'</div>');
 		$(this).hide();
+		$( this ).parent().find('input').focus();
 };
     
 
@@ -448,6 +452,14 @@ $(".saven").live("click", function () {
 	
 });
                 
+$('#content').on( "keydown", '.editor input', function(e) {
+  if (e.keyCode == 13) {
+	$( this ).parent().find('a').first().click();
+  }
+});
+
+
+
  
 //--></script>
 <?php echo $footer; ?>

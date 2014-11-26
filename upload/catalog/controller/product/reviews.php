@@ -66,6 +66,7 @@ class ControllerProductReviews extends Controller {
    			$prod_name = false;
    			$prod_model = false;
    			$prod_href = false;
+			$stickers = false;
 			
 			if ($result['product_id']) {
 				$product = $this->model_catalog_product->getProduct($result['product_id']);
@@ -76,6 +77,7 @@ class ControllerProductReviews extends Controller {
     			$prod_name = $product['name'];
     			$prod_model = $product['model'];
     			$prod_href = $this->url->link('product/product', 'product_id=' . $product['product_id']);
+				$stickers = $this->getStickers($product['product_id']) ;
 			}
 
 			$this->data['reviews'][] = array(
@@ -87,6 +89,7 @@ class ControllerProductReviews extends Controller {
 				'product_id'  => $product_id,
   				'prod_thumb'  => $prod_thumb,
   				'prod_name'   => $prod_name,
+				'sticker'     => $stickers,
   				'prod_model'  => $prod_model,
   				'prod_href'   => $prod_href
 			);
@@ -118,5 +121,33 @@ class ControllerProductReviews extends Controller {
 	
 		$this->response->setOutput($this->render());			
   	}
+	
+	private function getStickers($product_id) {
+	
+ 	$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;	
+		
+		if (!$stickers) {
+			return;
+		}
+		
+		$this->data['stickers'] = array();
+		
+		foreach ($stickers as $sticker) {
+			$this->data['stickers'][] = array(
+				'position' => $sticker['position'],
+				'image'    => HTTP_SERVER . 'image/' . $sticker['image']
+			);		
+		}
+
+	
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/stickers.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/product/stickers.tpl';
+		} else {
+			$this->template = 'default/template/product/stickers.tpl';
+		}
+	
+		return $this->render();
+	
+	}
 }
 ?>

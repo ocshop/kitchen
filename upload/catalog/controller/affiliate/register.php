@@ -10,6 +10,7 @@ class ControllerAffiliateRegister extends Controller {
 		$this->language->load('affiliate/register');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setRobots('noindex,follow');
 		$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 		$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 
@@ -44,6 +45,8 @@ class ControllerAffiliateRegister extends Controller {
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['text_select'] = $this->language->get('text_select');
 		$this->data['text_none'] = $this->language->get('text_none');

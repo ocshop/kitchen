@@ -632,3 +632,47 @@ table.form > tbody > tr > td {
 .box > .bottom .buttons .button {
 	margin-left: 5px;
 }
+/*sticker*/
+.sticker_block {display:inline-block; text-align: center;} 
+.corner_name{font-size:10px; line-height: 16px; color: grey;} 
+.square{width:10px;height: 10px;display:inline-block;border: 1px solid grey; vertical-align: text-top; position:relative}
+.corner_0:after {
+	content:'';
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	left: 0;
+	top: 0;
+	border-top: 7px solid #FF0000; 
+	border-right: 7px solid transparent;
+}			
+.corner_1:after {
+	content:'';
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	right: 0;
+	top: 0;
+	border-top: 7px solid #FF0000; 
+	border-left: 7px solid transparent;
+}
+.corner_2:after {
+	content:'';
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	left: 0;
+	bottom: 0;
+	border-bottom: 7px solid #FF0000; 
+	border-right: 7px solid transparent;
+}
+.corner_3:after {
+	content:'';
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	right: 0;
+	bottom: 0;
+	border-bottom: 7px solid #FF0000; 
+	border-left: 7px solid transparent;
+}

@@ -421,6 +421,98 @@ INSERT INTO `oc_banner_image_description` (`banner_image_id`, `language_id`, `ba
 (375, 2, 21, 'Palm', ''),
 (376, 1, 21, 'Hewlett-Packard', ''),
 (376, 2, 21, 'Hewlett-Packard', '');
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_benefit`
+--
+
+DROP TABLE IF EXISTS `oc_benefit`;
+CREATE TABLE `oc_benefit` (
+  `benefit_id` int(11) NOT NULL AUTO_INCREMENT,
+  `link` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `type` tinyint(1) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`benefit_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
+
+--
+-- Dumping data for table `oc_benefit`
+--
+
+INSERT INTO `oc_benefit` (`benefit_id`, `link`, `status`, `type`, `image`, `name`) VALUES
+(39, '/index.php?route=product/product&amp;product_id=40', 1, 0, 'data/present/present6.png', 'Подарок наушники'),
+(25, '', 1, 1, 'data/benefit/wifi.jpg', 'WIFI'),
+(38, 'http://ru.wikipedia.org/wiki/Bluetooth', 1, 1, 'data/benefit/bluetooth.jpg', 'Bluetooth'),
+(42, 'index.php?route=product/product&amp;product_id=40', 1, 0, 'data/present/present1.png', 'Телефоны'),
+(41, '', 1, 1, 'data/benefit/android.png', 'Android');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_benefit_description`
+--
+
+DROP TABLE IF EXISTS `oc_benefit_description`;
+CREATE TABLE `oc_benefit_description` (
+  `benefit_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`benefit_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_benefit_description`
+--
+
+INSERT INTO `oc_benefit_description` (`benefit_id`, `language_id`, `description`) VALUES
+(25, 1, '&lt;p&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;Под аббревиатурой Wi-Fi (от английского словосочетания Wireless Fidelity&lt;/span&gt;&lt;sup class=&quot;reference&quot; id=&quot;cite_ref-1&quot; style=&quot;line-height: 1em; unicode-bidi: -webkit-isolate; color: rgb(37, 37, 37); font-family: sans-serif;&quot;&gt;&lt;a href=&quot;https://ru.wikipedia.org/wiki/Wi-Fi#cite_note-1&quot; style=&quot;text-decoration: none; color: rgb(11, 0, 128); background: none;&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;, которое можно дословно перевести как «беспроводное качество» или «беспроводная точность») в настоящее время развивается целое семейство стандартов передачи цифровых потоков данных по радиоканалам.&lt;/span&gt;&lt;/p&gt;\r\n'),
+(25, 2, '&lt;p&gt;&lt;span style=&quot;font-size: 13px; line-height: 20.7999992370605px;&quot;&gt;WIFI&lt;/span&gt;&lt;/p&gt;\r\n'),
+(38, 1, '&lt;p&gt;&lt;b style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;Bluetooth&lt;/b&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;(от слов&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA&quot; style=&quot;text-decoration: none; color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px; background-image: none; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;&quot; title=&quot;Английский язык&quot;&gt;англ.&lt;/a&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;i style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&lt;span lang=&quot;en&quot; xml:lang=&quot;en&quot;&gt;blue&lt;/span&gt;&lt;/i&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;- синий и&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA&quot; style=&quot;text-decoration: none; color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px; background-image: none; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;&quot; title=&quot;Английский язык&quot;&gt;англ.&lt;/a&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;i style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&lt;span lang=&quot;en&quot; xml:lang=&quot;en&quot;&gt;tooth&lt;/span&gt;&lt;/i&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;- зуб; произносится&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;IPA&quot; style=&quot;font-family: ''Arial Unicode MS'', ''Lucida Sans Unicode''; color: rgb(37, 37, 37); font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&lt;a href=&quot;https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%B6%D0%B4%D1%83%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9_%D1%84%D0%BE%D0%BD%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82&quot; style=&quot;text-decoration: none; color: rgb(11, 0, 128); background: none;&quot; title=&quot;Международный фонетический алфавит&quot;&gt;/bluːtuːθ/&lt;/a&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;\r\n'),
+(38, 2, '&lt;p&gt;&lt;b style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;Bluetooth&lt;/b&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;(от слов&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA&quot; style=&quot;text-decoration: none; color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px; background-image: none; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;&quot; title=&quot;Английский язык&quot;&gt;англ.&lt;/a&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;i style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&lt;span lang=&quot;en&quot; xml:lang=&quot;en&quot;&gt;blue&lt;/span&gt;&lt;/i&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;- синий и&amp;nbsp;&lt;/span&gt;&lt;a href=&quot;https://ru.wikipedia.org/wiki/%D0%90%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA&quot; style=&quot;text-decoration: none; color: rgb(11, 0, 128); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px; background-image: none; background-attachment: initial; background-size: initial; background-origin: initial; background-clip: initial; background-position: initial; background-repeat: initial;&quot; title=&quot;Английский язык&quot;&gt;англ.&lt;/a&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;i style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&lt;span lang=&quot;en&quot; xml:lang=&quot;en&quot;&gt;tooth&lt;/span&gt;&lt;/i&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&amp;nbsp;- зуб; произносится&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;IPA&quot; style=&quot;font-family: ''Arial Unicode MS'', ''Lucida Sans Unicode''; color: rgb(37, 37, 37); font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;&lt;a href=&quot;https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%B6%D0%B4%D1%83%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9_%D1%84%D0%BE%D0%BD%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%B0%D0%BB%D1%84%D0%B0%D0%B2%D0%B8%D1%82&quot; style=&quot;text-decoration: none; color: rgb(11, 0, 128); background: none;&quot; title=&quot;Международный фонетический алфавит&quot;&gt;/bluːtuːθ/&lt;/a&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px; line-height: 22.3999996185303px;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;\r\n'),
+(39, 1, '&lt;p&gt;Подарок наушники&lt;/p&gt;\r\n'),
+(39, 2, '&lt;p&gt;Подарок наушники&lt;/p&gt;\r\n'),
+(41, 1, ''),
+(41, 2, ''),
+(42, 1, '&lt;p&gt;Телефоны&lt;/p&gt;\r\n'),
+(42, 2, '&lt;p&gt;Телефоны&lt;/p&gt;\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_product_to_benefit`
+--
+
+DROP TABLE IF EXISTS `oc_product_to_benefit`;
+CREATE TABLE `oc_product_to_benefit` (
+  `product_id` int(11) NOT NULL,
+  `benefit_id` int(11) NOT NULL,
+  KEY `product_id` (`product_id`),
+  KEY `benefit_id` (`benefit_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `oc_product_to_benefit`
+--
+
+INSERT INTO `oc_product_to_benefit` (`product_id`, `benefit_id`) VALUES
+(43, 39),
+(43, 25),
+(28, 41),
+(47, 39),
+(47, 25),
+(47, 38),
+(42, 25),
+(42, 38),
+(42, 41),
+(28, 38),
+(28, 25),
+(28, 42);
+
 -- --------------------------------------------------------
 
 --
@@ -498,6 +590,7 @@ CREATE TABLE `oc_category_description` (
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `meta_description` varchar(255) NOT NULL,
+  `description_bottom` text NOT NULL,
   `meta_keyword` varchar(255) NOT NULL,
   `seo_title` varchar(255) NOT NULL, 
   `seo_h1` varchar(255) NOT NULL,
@@ -1646,7 +1739,8 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (497, 'module', 'blog_featured'),
 (498, 'module', 'blog_reviews'),
 (499, 'module', 'featuredarticle'),
-(500, 'module', 'featuredwb');
+(500, 'module', 'featuredwb'),
+(501, 'module', 'testimonial');
 
 -- --------------------------------------------------------
 
@@ -1958,6 +2052,7 @@ CREATE TABLE `oc_manufacturer_description` (
   `manufacturer_id` int(11) NOT NULL default '0',
   `language_id` int(11) NOT NULL default '0',
   `description` text NOT NULL,
+  `description_bottom` text NOT NULL,
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL,
   `seo_title` varchar(255) NOT NULL,
@@ -3165,6 +3260,26 @@ CREATE TABLE `oc_product_to_layout` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_product_to_sticker`
+--
+
+DROP TABLE IF EXISTS `oc_product_to_sticker`;
+CREATE TABLE `oc_product_to_sticker` (
+  `product_id` int(11) NOT NULL,
+  `sticker_id` int(11) NOT NULL,
+  `position` tinyint(1) NOT NULL,
+  KEY `product_id` (`product_id`),
+  KEY `sticker_id` (`sticker_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `oc_product_to_sticker`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_product_to_store`
 --
 
@@ -3214,7 +3329,7 @@ CREATE TABLE `oc_product_recurring` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `oc_product_to_store`
+-- Dumping data for table `oc_product_recurring`
 --
 
 -- --------------------------------------------------------
@@ -3606,10 +3721,40 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (5972, 0, 'featuredarticle', 'featuredarticle_module', 'a:4:{i:0;a:8:{s:5:"limit";s:1:"3";s:10:"text_limit";s:3:"150";s:11:"image_width";s:3:"215";s:12:"image_height";s:3:"215";s:9:"layout_id";s:1:"3";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:2:"11";}i:1;a:8:{s:5:"limit";s:1:"3";s:10:"text_limit";s:3:"150";s:11:"image_width";s:3:"215";s:12:"image_height";s:3:"215";s:9:"layout_id";s:1:"5";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:2:"11";}i:2;a:8:{s:5:"limit";s:1:"3";s:10:"text_limit";s:3:"150";s:11:"image_width";s:3:"170";s:12:"image_height";s:3:"170";s:9:"layout_id";s:1:"3";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"5";}i:3;a:8:{s:5:"limit";s:1:"3";s:10:"text_limit";s:3:"150";s:11:"image_width";s:3:"170";s:12:"image_height";s:3:"170";s:9:"layout_id";s:1:"5";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"5";}}', 1),
 (5973, 0, 'featuredwb', 'featuredwb_module', 'a:4:{i:0;a:7:{s:5:"limit";s:1:"3";s:11:"image_width";s:3:"215";s:12:"image_height";s:3:"215";s:9:"layout_id";s:1:"3";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:2:"15";}i:1;a:7:{s:5:"limit";s:1:"3";s:11:"image_width";s:3:"215";s:12:"image_height";s:3:"215";s:9:"layout_id";s:1:"5";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:2:"15";}i:2;a:7:{s:5:"limit";s:1:"3";s:11:"image_width";s:3:"170";s:12:"image_height";s:3:"170";s:9:"layout_id";s:1:"3";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"7";}i:3;a:7:{s:5:"limit";s:1:"3";s:11:"image_width";s:3:"170";s:12:"image_height";s:3:"170";s:9:"layout_id";s:1:"5";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"7";}}', 1),
 (5978, 0, 'blog_category', 'blog_category_module', 'a:3:{i:0;a:5:{s:9:"layout_id";s:2:"12";s:8:"position";s:12:"column_right";s:5:"count";s:1:"0";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"0";}i:1;a:5:{s:9:"layout_id";s:2:"13";s:8:"position";s:12:"column_right";s:5:"count";s:1:"0";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"0";}i:2;a:5:{s:9:"layout_id";s:2:"14";s:8:"position";s:12:"column_right";s:5:"count";s:1:"0";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"0";}}', 1),
-(6400, 0, 'config', 'config_customer_group_display', 'a:1:{i:0;s:1:"1";}', 1);
+(6400, 0, 'config', 'config_customer_group_display', 'a:1:{i:0;s:1:"1";}', 1),
+(6401, 0, 'testimonial', 'testimonial_default_rating', '3', 0),
+(6402, 0, 'testimonial', 'testimonial_admin_approved', '0', 0),
+(6403, 0, 'testimonial', 'testimonial_send_to_admin', '0', 0),
+(6404, 0, 'testimonial', 'testimonial_all_page_limit', '20', 0);
 
 
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_sticker`
+--
+
+DROP TABLE IF EXISTS `oc_sticker`;
+CREATE TABLE `oc_sticker` (
+  `sticker_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  PRIMARY KEY (`sticker_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+
+--
+-- Dumping data for table `oc_sticker`
+--
+
+INSERT INTO `oc_sticker` (`sticker_id`, `name`, `status`, `image`) VALUES
+(15, 'Лучший Выбор', 1, 'data/stiker/best.png'),
+(13, 'Новинка', 1, 'data/stiker/new.png'),
+(14, 'Хит Продаж', 1, 'data/stiker/bestseller.png'),
+(16, 'Акция', 1, 'data/stiker/special.png'),
+(17, 'Лучшая цена', 1, 'data/stiker/bestprice.png');
 
 -- --------------------------------------------------------
 
@@ -3758,6 +3903,45 @@ INSERT INTO `oc_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oc_testimonial`
+--
+DROP TABLE IF EXISTS `oc_testimonial`;
+CREATE TABLE `oc_testimonial` (
+  `testimonial_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `city` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `email` varchar(96) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
+  `rating` int(1) NOT NULL DEFAULT '0',
+  `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`testimonial_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `oc_testimonial`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oc_testimonial_description`
+--
+DROP TABLE IF EXISTS `oc_testimonial_description`;
+CREATE TABLE `oc_testimonial_description` (
+  `testimonial_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `title` varchar(64) NOT NULL DEFAULT '' COLLATE utf8_unicode_ci,
+  `description` text NOT NULL COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`testimonial_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `oc_testimonial_description`
+--
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `oc_url_alias`
 --
 
@@ -3796,7 +3980,8 @@ INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`, `seomanager`) VA
 (803, 'blog/latest', 'blog', 1),
 (804, 'product/latest', 'latest', 1),
 (805, 'article_id=120', 'ocshop-cms-1-5-6-2', 0),
-(808, 'article_id=123', 'foto-obzor-pervij', 0);
+(808, 'article_id=123', 'foto-obzor-pervij', 0),
+(809, 'product/testimonial', 'testimonial', 1);
 
 -- --------------------------------------------------------
 
@@ -3844,7 +4029,7 @@ CREATE TABLE `oc_user_group` (
 --
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Главный администратор', 'a:2:{s:6:"access";a:145:{i:0;s:12:"blog/article";i:1;s:17:"blog/blog_setting";i:2;s:12:"blog/gallery";i:3;s:9:"blog/news";i:4;s:19:"blog/review_article";i:5;s:17:"catalog/attribute";i:6;s:23:"catalog/attribute_group";i:7;s:16:"catalog/category";i:8;s:18:"catalog/coolfilter";i:9;s:24:"catalog/coolfilter_group";i:10;s:16:"catalog/download";i:11;s:14:"catalog/filter";i:12;s:19:"catalog/information";i:13;s:20:"catalog/manufacturer";i:14;s:14:"catalog/option";i:15;s:15:"catalog/product";i:16;s:15:"catalog/profile";i:17;s:14:"catalog/review";i:18;s:18:"common/filemanager";i:19;s:13:"design/banner";i:20;s:19:"design/custom_field";i:21;s:13:"design/layout";i:22;s:14:"extension/feed";i:23;s:17:"extension/manager";i:24;s:16:"extension/module";i:25;s:17:"extension/payment";i:26;s:18:"extension/shipping";i:27;s:15:"extension/total";i:28;s:16:"feed/google_base";i:29;s:19:"feed/google_sitemap";i:30;s:18:"feed/yandex_market";i:31;s:20:"localisation/country";i:32;s:21:"localisation/currency";i:33;s:21:"localisation/geo_zone";i:34;s:21:"localisation/language";i:35;s:25:"localisation/length_class";i:36;s:25:"localisation/order_status";i:37;s:26:"localisation/return_action";i:38;s:26:"localisation/return_reason";i:39;s:26:"localisation/return_status";i:40;s:25:"localisation/stock_status";i:41;s:22:"localisation/tax_class";i:42;s:21:"localisation/tax_rate";i:43;s:25:"localisation/weight_class";i:44;s:17:"localisation/zone";i:45;s:14:"module/account";i:46;s:16:"module/affiliate";i:47;s:13:"module/banner";i:48;s:17:"module/bestseller";i:49;s:15:"module/carousel";i:50;s:15:"module/category";i:51;s:17:"module/coolfilter";i:52;s:15:"module/featured";i:53;s:13:"module/filter";i:54;s:18:"module/google_talk";i:55;s:18:"module/information";i:56;s:13:"module/latest";i:57;s:16:"module/pp_layout";i:58;s:18:"module/product_tab";i:59;s:14:"module/reviews";i:60;s:16:"module/slideshow";i:61;s:14:"module/special";i:62;s:12:"module/store";i:63;s:13:"module/viewed";i:64;s:14:"module/welcome";i:65;s:21:"payment/bank_transfer";i:66;s:11:"payment/cod";i:67;s:21:"payment/free_checkout";i:68;s:14:"payment/liqpay";i:69;s:20:"payment/moneybookers";i:70;s:21:"payment/nalogenniy_np";i:71;s:18:"payment/pp_express";i:72;s:25:"payment/pp_payflow_iframe";i:73;s:14:"payment/pp_pro";i:74;s:21:"payment/pp_pro_iframe";i:75;s:17:"payment/pp_pro_pf";i:76;s:17:"payment/pp_pro_uk";i:77;s:19:"payment/pp_standard";i:78;s:25:"payment/sberbank_transfer";i:79;s:20:"payment/webmoney_wme";i:80;s:20:"payment/webmoney_wmr";i:81;s:20:"payment/webmoney_wmu";i:82;s:20:"payment/webmoney_wmz";i:83;s:27:"report/affiliate_commission";i:84;s:22:"report/customer_credit";i:85;s:22:"report/customer_online";i:86;s:21:"report/customer_order";i:87;s:22:"report/customer_reward";i:88;s:24:"report/product_purchased";i:89;s:21:"report/product_viewed";i:90;s:18:"report/sale_coupon";i:91;s:17:"report/sale_order";i:92;s:18:"report/sale_return";i:93;s:20:"report/sale_shipping";i:94;s:15:"report/sale_tax";i:95;s:14:"sale/affiliate";i:96;s:12:"sale/contact";i:97;s:11:"sale/coupon";i:98;s:13:"sale/customer";i:99;s:20:"sale/customer_ban_ip";i:100;s:19:"sale/customer_group";i:101;s:10:"sale/order";i:102;s:14:"sale/recurring";i:103;s:11:"sale/return";i:104;s:12:"sale/voucher";i:105;s:18:"sale/voucher_theme";i:106;s:15:"setting/setting";i:107;s:13:"setting/store";i:108;s:17:"shipping/by_total";i:109;s:17:"shipping/citylink";i:110;s:23:"shipping/courierautolux";i:111;s:13:"shipping/flat";i:112;s:13:"shipping/free";i:113;s:15:"shipping/gunsel";i:114;s:15:"shipping/intime";i:115;s:13:"shipping/item";i:116;s:17:"shipping/nexpress";i:117;s:19:"shipping/novaposhta";i:118;s:15:"shipping/pickup";i:119;s:15:"shipping/weight";i:120;s:11:"tool/backup";i:121;s:17:"tool/cachemanager";i:122;s:14:"tool/error_log";i:123;s:15:"tool/seomanager";i:124;s:18:"tool/vqmod_manager";i:125;s:12:"total/coupon";i:126;s:12:"total/credit";i:127;s:14:"total/handling";i:128;s:19:"total/low_order_fee";i:129;s:12:"total/reward";i:130;s:14:"total/shipping";i:131;s:15:"total/sub_total";i:132;s:9:"total/tax";i:133;s:11:"total/total";i:134;s:13:"total/voucher";i:135;s:9:"user/user";i:136;s:20:"user/user_permission";i:137;s:20:"module/blog_category";i:138;s:18:"module/blog_latest";i:139;s:22:"module/blog_mostviewed";i:140;s:20:"module/blog_featured";i:141;s:19:"module/blog_reviews";i:142;s:22:"module/featuredarticle";i:143;s:17:"module/featuredwb";i:144;s:19:"feed/google_sitemap";}s:6:"modify";a:145:{i:0;s:12:"blog/article";i:1;s:17:"blog/blog_setting";i:2;s:12:"blog/gallery";i:3;s:9:"blog/news";i:4;s:19:"blog/review_article";i:5;s:17:"catalog/attribute";i:6;s:23:"catalog/attribute_group";i:7;s:16:"catalog/category";i:8;s:18:"catalog/coolfilter";i:9;s:24:"catalog/coolfilter_group";i:10;s:16:"catalog/download";i:11;s:14:"catalog/filter";i:12;s:19:"catalog/information";i:13;s:20:"catalog/manufacturer";i:14;s:14:"catalog/option";i:15;s:15:"catalog/product";i:16;s:15:"catalog/profile";i:17;s:14:"catalog/review";i:18;s:18:"common/filemanager";i:19;s:13:"design/banner";i:20;s:19:"design/custom_field";i:21;s:13:"design/layout";i:22;s:14:"extension/feed";i:23;s:17:"extension/manager";i:24;s:16:"extension/module";i:25;s:17:"extension/payment";i:26;s:18:"extension/shipping";i:27;s:15:"extension/total";i:28;s:16:"feed/google_base";i:29;s:19:"feed/google_sitemap";i:30;s:18:"feed/yandex_market";i:31;s:20:"localisation/country";i:32;s:21:"localisation/currency";i:33;s:21:"localisation/geo_zone";i:34;s:21:"localisation/language";i:35;s:25:"localisation/length_class";i:36;s:25:"localisation/order_status";i:37;s:26:"localisation/return_action";i:38;s:26:"localisation/return_reason";i:39;s:26:"localisation/return_status";i:40;s:25:"localisation/stock_status";i:41;s:22:"localisation/tax_class";i:42;s:21:"localisation/tax_rate";i:43;s:25:"localisation/weight_class";i:44;s:17:"localisation/zone";i:45;s:14:"module/account";i:46;s:16:"module/affiliate";i:47;s:13:"module/banner";i:48;s:17:"module/bestseller";i:49;s:15:"module/carousel";i:50;s:15:"module/category";i:51;s:17:"module/coolfilter";i:52;s:15:"module/featured";i:53;s:13:"module/filter";i:54;s:18:"module/google_talk";i:55;s:18:"module/information";i:56;s:13:"module/latest";i:57;s:16:"module/pp_layout";i:58;s:18:"module/product_tab";i:59;s:14:"module/reviews";i:60;s:16:"module/slideshow";i:61;s:14:"module/special";i:62;s:12:"module/store";i:63;s:13:"module/viewed";i:64;s:14:"module/welcome";i:65;s:21:"payment/bank_transfer";i:66;s:11:"payment/cod";i:67;s:21:"payment/free_checkout";i:68;s:14:"payment/liqpay";i:69;s:20:"payment/moneybookers";i:70;s:21:"payment/nalogenniy_np";i:71;s:18:"payment/pp_express";i:72;s:25:"payment/pp_payflow_iframe";i:73;s:14:"payment/pp_pro";i:74;s:21:"payment/pp_pro_iframe";i:75;s:17:"payment/pp_pro_pf";i:76;s:17:"payment/pp_pro_uk";i:77;s:19:"payment/pp_standard";i:78;s:25:"payment/sberbank_transfer";i:79;s:20:"payment/webmoney_wme";i:80;s:20:"payment/webmoney_wmr";i:81;s:20:"payment/webmoney_wmu";i:82;s:20:"payment/webmoney_wmz";i:83;s:27:"report/affiliate_commission";i:84;s:22:"report/customer_credit";i:85;s:22:"report/customer_online";i:86;s:21:"report/customer_order";i:87;s:22:"report/customer_reward";i:88;s:24:"report/product_purchased";i:89;s:21:"report/product_viewed";i:90;s:18:"report/sale_coupon";i:91;s:17:"report/sale_order";i:92;s:18:"report/sale_return";i:93;s:20:"report/sale_shipping";i:94;s:15:"report/sale_tax";i:95;s:14:"sale/affiliate";i:96;s:12:"sale/contact";i:97;s:11:"sale/coupon";i:98;s:13:"sale/customer";i:99;s:20:"sale/customer_ban_ip";i:100;s:19:"sale/customer_group";i:101;s:10:"sale/order";i:102;s:14:"sale/recurring";i:103;s:11:"sale/return";i:104;s:12:"sale/voucher";i:105;s:18:"sale/voucher_theme";i:106;s:15:"setting/setting";i:107;s:13:"setting/store";i:108;s:17:"shipping/by_total";i:109;s:17:"shipping/citylink";i:110;s:23:"shipping/courierautolux";i:111;s:13:"shipping/flat";i:112;s:13:"shipping/free";i:113;s:15:"shipping/gunsel";i:114;s:15:"shipping/intime";i:115;s:13:"shipping/item";i:116;s:17:"shipping/nexpress";i:117;s:19:"shipping/novaposhta";i:118;s:15:"shipping/pickup";i:119;s:15:"shipping/weight";i:120;s:11:"tool/backup";i:121;s:17:"tool/cachemanager";i:122;s:14:"tool/error_log";i:123;s:15:"tool/seomanager";i:124;s:18:"tool/vqmod_manager";i:125;s:12:"total/coupon";i:126;s:12:"total/credit";i:127;s:14:"total/handling";i:128;s:19:"total/low_order_fee";i:129;s:12:"total/reward";i:130;s:14:"total/shipping";i:131;s:15:"total/sub_total";i:132;s:9:"total/tax";i:133;s:11:"total/total";i:134;s:13:"total/voucher";i:135;s:9:"user/user";i:136;s:20:"user/user_permission";i:137;s:20:"module/blog_category";i:138;s:18:"module/blog_latest";i:139;s:22:"module/blog_mostviewed";i:140;s:20:"module/blog_featured";i:141;s:19:"module/blog_reviews";i:142;s:22:"module/featuredarticle";i:143;s:17:"module/featuredwb";i:144;s:19:"feed/google_sitemap";}}'),
+(1, 'Главный администратор', 'a:2:{s:6:"access";a:150:{i:0;s:12:"blog/article";i:1;s:17:"blog/blog_setting";i:2;s:12:"blog/gallery";i:3;s:9:"blog/news";i:4;s:19:"blog/review_article";i:5;s:17:"catalog/attribute";i:6;s:23:"catalog/attribute_group";i:7;s:16:"catalog/category";i:8;s:18:"catalog/coolfilter";i:9;s:24:"catalog/coolfilter_group";i:10;s:16:"catalog/download";i:11;s:14:"catalog/filter";i:12;s:19:"catalog/information";i:13;s:20:"catalog/manufacturer";i:14;s:14:"catalog/option";i:15;s:15:"catalog/product";i:16;s:15:"catalog/profile";i:17;s:14:"catalog/review";i:18;s:19:"catalog/testimonial";i:19;s:18:"common/filemanager";i:20;s:13:"design/banner";i:21;s:14:"design/benefit";i:22;s:19:"design/custom_field";i:23;s:13:"design/layout";i:24;s:14:"design/sticker";i:25;s:14:"extension/feed";i:26;s:17:"extension/manager";i:27;s:16:"extension/module";i:28;s:17:"extension/payment";i:29;s:18:"extension/shipping";i:30;s:15:"extension/total";i:31;s:16:"feed/google_base";i:32;s:19:"feed/google_sitemap";i:33;s:18:"feed/yandex_market";i:34;s:20:"localisation/country";i:35;s:21:"localisation/currency";i:36;s:21:"localisation/geo_zone";i:37;s:21:"localisation/language";i:38;s:25:"localisation/length_class";i:39;s:25:"localisation/order_status";i:40;s:26:"localisation/return_action";i:41;s:26:"localisation/return_reason";i:42;s:26:"localisation/return_status";i:43;s:25:"localisation/stock_status";i:44;s:22:"localisation/tax_class";i:45;s:21:"localisation/tax_rate";i:46;s:25:"localisation/weight_class";i:47;s:17:"localisation/zone";i:48;s:14:"module/account";i:49;s:16:"module/affiliate";i:50;s:13:"module/banner";i:51;s:17:"module/bestseller";i:52;s:16:"module/blockhtml";i:53;s:20:"module/blog_category";i:54;s:20:"module/blog_featured";i:55;s:18:"module/blog_latest";i:56;s:22:"module/blog_mostviewed";i:57;s:19:"module/blog_reviews";i:58;s:15:"module/carousel";i:59;s:15:"module/category";i:60;s:17:"module/coolfilter";i:61;s:15:"module/featured";i:62;s:22:"module/featuredarticle";i:63;s:17:"module/featuredwb";i:64;s:13:"module/filter";i:65;s:18:"module/google_talk";i:66;s:18:"module/information";i:67;s:13:"module/latest";i:68;s:16:"module/pp_layout";i:69;s:18:"module/product_tab";i:70;s:14:"module/reviews";i:71;s:16:"module/slideshow";i:72;s:14:"module/special";i:73;s:12:"module/store";i:74;s:18:"module/testimonial";i:75;s:13:"module/viewed";i:76;s:14:"module/welcome";i:77;s:21:"payment/bank_transfer";i:78;s:11:"payment/cod";i:79;s:21:"payment/free_checkout";i:80;s:14:"payment/liqpay";i:81;s:20:"payment/moneybookers";i:82;s:21:"payment/nalogenniy_np";i:83;s:18:"payment/pp_express";i:84;s:25:"payment/pp_payflow_iframe";i:85;s:14:"payment/pp_pro";i:86;s:21:"payment/pp_pro_iframe";i:87;s:17:"payment/pp_pro_pf";i:88;s:17:"payment/pp_pro_uk";i:89;s:19:"payment/pp_standard";i:90;s:25:"payment/sberbank_transfer";i:91;s:20:"payment/webmoney_wme";i:92;s:20:"payment/webmoney_wmr";i:93;s:20:"payment/webmoney_wmu";i:94;s:20:"payment/webmoney_wmz";i:95;s:27:"report/affiliate_commission";i:96;s:22:"report/customer_credit";i:97;s:22:"report/customer_online";i:98;s:21:"report/customer_order";i:99;s:22:"report/customer_reward";i:100;s:24:"report/product_purchased";i:101;s:21:"report/product_viewed";i:102;s:18:"report/sale_coupon";i:103;s:17:"report/sale_order";i:104;s:18:"report/sale_return";i:105;s:20:"report/sale_shipping";i:106;s:15:"report/sale_tax";i:107;s:14:"sale/affiliate";i:108;s:12:"sale/contact";i:109;s:11:"sale/coupon";i:110;s:13:"sale/customer";i:111;s:20:"sale/customer_ban_ip";i:112;s:19:"sale/customer_group";i:113;s:10:"sale/order";i:114;s:14:"sale/recurring";i:115;s:11:"sale/return";i:116;s:12:"sale/voucher";i:117;s:18:"sale/voucher_theme";i:118;s:15:"setting/setting";i:119;s:13:"setting/store";i:120;s:17:"shipping/by_total";i:121;s:17:"shipping/citylink";i:122;s:23:"shipping/courierautolux";i:123;s:13:"shipping/flat";i:124;s:13:"shipping/free";i:125;s:15:"shipping/gunsel";i:126;s:15:"shipping/intime";i:127;s:13:"shipping/item";i:128;s:17:"shipping/nexpress";i:129;s:19:"shipping/novaposhta";i:130;s:15:"shipping/pickup";i:131;s:15:"shipping/weight";i:132;s:18:"shipping/xshipping";i:133;s:11:"tool/backup";i:134;s:17:"tool/cachemanager";i:135;s:14:"tool/error_log";i:136;s:15:"tool/seomanager";i:137;s:18:"tool/vqmod_manager";i:138;s:12:"total/coupon";i:139;s:12:"total/credit";i:140;s:14:"total/handling";i:141;s:19:"total/low_order_fee";i:142;s:12:"total/reward";i:143;s:14:"total/shipping";i:144;s:15:"total/sub_total";i:145;s:9:"total/tax";i:146;s:11:"total/total";i:147;s:13:"total/voucher";i:148;s:9:"user/user";i:149;s:20:"user/user_permission";}s:6:"modify";a:150:{i:0;s:12:"blog/article";i:1;s:17:"blog/blog_setting";i:2;s:12:"blog/gallery";i:3;s:9:"blog/news";i:4;s:19:"blog/review_article";i:5;s:17:"catalog/attribute";i:6;s:23:"catalog/attribute_group";i:7;s:16:"catalog/category";i:8;s:18:"catalog/coolfilter";i:9;s:24:"catalog/coolfilter_group";i:10;s:16:"catalog/download";i:11;s:14:"catalog/filter";i:12;s:19:"catalog/information";i:13;s:20:"catalog/manufacturer";i:14;s:14:"catalog/option";i:15;s:15:"catalog/product";i:16;s:15:"catalog/profile";i:17;s:14:"catalog/review";i:18;s:19:"catalog/testimonial";i:19;s:18:"common/filemanager";i:20;s:13:"design/banner";i:21;s:14:"design/benefit";i:22;s:19:"design/custom_field";i:23;s:13:"design/layout";i:24;s:14:"design/sticker";i:25;s:14:"extension/feed";i:26;s:17:"extension/manager";i:27;s:16:"extension/module";i:28;s:17:"extension/payment";i:29;s:18:"extension/shipping";i:30;s:15:"extension/total";i:31;s:16:"feed/google_base";i:32;s:19:"feed/google_sitemap";i:33;s:18:"feed/yandex_market";i:34;s:20:"localisation/country";i:35;s:21:"localisation/currency";i:36;s:21:"localisation/geo_zone";i:37;s:21:"localisation/language";i:38;s:25:"localisation/length_class";i:39;s:25:"localisation/order_status";i:40;s:26:"localisation/return_action";i:41;s:26:"localisation/return_reason";i:42;s:26:"localisation/return_status";i:43;s:25:"localisation/stock_status";i:44;s:22:"localisation/tax_class";i:45;s:21:"localisation/tax_rate";i:46;s:25:"localisation/weight_class";i:47;s:17:"localisation/zone";i:48;s:14:"module/account";i:49;s:16:"module/affiliate";i:50;s:13:"module/banner";i:51;s:17:"module/bestseller";i:52;s:16:"module/blockhtml";i:53;s:20:"module/blog_category";i:54;s:20:"module/blog_featured";i:55;s:18:"module/blog_latest";i:56;s:22:"module/blog_mostviewed";i:57;s:19:"module/blog_reviews";i:58;s:15:"module/carousel";i:59;s:15:"module/category";i:60;s:17:"module/coolfilter";i:61;s:15:"module/featured";i:62;s:22:"module/featuredarticle";i:63;s:17:"module/featuredwb";i:64;s:13:"module/filter";i:65;s:18:"module/google_talk";i:66;s:18:"module/information";i:67;s:13:"module/latest";i:68;s:16:"module/pp_layout";i:69;s:18:"module/product_tab";i:70;s:14:"module/reviews";i:71;s:16:"module/slideshow";i:72;s:14:"module/special";i:73;s:12:"module/store";i:74;s:18:"module/testimonial";i:75;s:13:"module/viewed";i:76;s:14:"module/welcome";i:77;s:21:"payment/bank_transfer";i:78;s:11:"payment/cod";i:79;s:21:"payment/free_checkout";i:80;s:14:"payment/liqpay";i:81;s:20:"payment/moneybookers";i:82;s:21:"payment/nalogenniy_np";i:83;s:18:"payment/pp_express";i:84;s:25:"payment/pp_payflow_iframe";i:85;s:14:"payment/pp_pro";i:86;s:21:"payment/pp_pro_iframe";i:87;s:17:"payment/pp_pro_pf";i:88;s:17:"payment/pp_pro_uk";i:89;s:19:"payment/pp_standard";i:90;s:25:"payment/sberbank_transfer";i:91;s:20:"payment/webmoney_wme";i:92;s:20:"payment/webmoney_wmr";i:93;s:20:"payment/webmoney_wmu";i:94;s:20:"payment/webmoney_wmz";i:95;s:27:"report/affiliate_commission";i:96;s:22:"report/customer_credit";i:97;s:22:"report/customer_online";i:98;s:21:"report/customer_order";i:99;s:22:"report/customer_reward";i:100;s:24:"report/product_purchased";i:101;s:21:"report/product_viewed";i:102;s:18:"report/sale_coupon";i:103;s:17:"report/sale_order";i:104;s:18:"report/sale_return";i:105;s:20:"report/sale_shipping";i:106;s:15:"report/sale_tax";i:107;s:14:"sale/affiliate";i:108;s:12:"sale/contact";i:109;s:11:"sale/coupon";i:110;s:13:"sale/customer";i:111;s:20:"sale/customer_ban_ip";i:112;s:19:"sale/customer_group";i:113;s:10:"sale/order";i:114;s:14:"sale/recurring";i:115;s:11:"sale/return";i:116;s:12:"sale/voucher";i:117;s:18:"sale/voucher_theme";i:118;s:15:"setting/setting";i:119;s:13:"setting/store";i:120;s:17:"shipping/by_total";i:121;s:17:"shipping/citylink";i:122;s:23:"shipping/courierautolux";i:123;s:13:"shipping/flat";i:124;s:13:"shipping/free";i:125;s:15:"shipping/gunsel";i:126;s:15:"shipping/intime";i:127;s:13:"shipping/item";i:128;s:17:"shipping/nexpress";i:129;s:19:"shipping/novaposhta";i:130;s:15:"shipping/pickup";i:131;s:15:"shipping/weight";i:132;s:18:"shipping/xshipping";i:133;s:11:"tool/backup";i:134;s:17:"tool/cachemanager";i:135;s:14:"tool/error_log";i:136;s:15:"tool/seomanager";i:137;s:18:"tool/vqmod_manager";i:138;s:12:"total/coupon";i:139;s:12:"total/credit";i:140;s:14:"total/handling";i:141;s:19:"total/low_order_fee";i:142;s:12:"total/reward";i:143;s:14:"total/shipping";i:144;s:15:"total/sub_total";i:145;s:9:"total/tax";i:146;s:11:"total/total";i:147;s:13:"total/voucher";i:148;s:9:"user/user";i:149;s:20:"user/user_permission";}}'),
 (10, 'Демонстрация', '');
 
 -- --------------------------------------------------------

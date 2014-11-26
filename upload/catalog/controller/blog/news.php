@@ -50,6 +50,8 @@ class ControllerBlogNews extends Controller {
 			$blid = '';
 		
 			$parts = explode('_', (string)$this->request->get['blid']);
+			
+			$news_id = (int)array_pop($parts);
 		
 			foreach ($parts as $blid_id) {
 				if (!$blid) {
@@ -60,7 +62,7 @@ class ControllerBlogNews extends Controller {
 									
 				$news_info = $this->model_blog_news->getCategory($blid_id);
 				
-				if ($news_info) {
+				if ($news_info && ($blid_id != $news_id)) {
 	       			$this->data['breadcrumbs'][] = array(
    	    				'text'      => $news_info['name'],
 						'href'      => $this->url->link('blog/news', 'blid=' . $blid),
@@ -69,11 +71,11 @@ class ControllerBlogNews extends Controller {
 				}
 			}		
 		
-			$news_id = (int)array_pop($parts);
+			
 		} else {
 			$news_id = 0;
 		}
-		
+
 		$news_info = $this->model_blog_news->getCategory($news_id);
 	
 		if ($news_info) {
@@ -93,7 +95,12 @@ class ControllerBlogNews extends Controller {
 				$this->data['heading_title'] = $news_info['name'];
 			}
 			
-			$this->document->addStyle('catalog/view/theme/default/stylesheet/blog.css');
+			if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/blog.css')) {
+				$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/blog.css');
+			} else {
+				$this->document->addStyle('catalog/view/theme/default/stylesheet/blog.css');
+			}
+			
 			$this->document->addScript('catalog/view/javascript/jquery/jail/jail.min.js');
 			$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 			

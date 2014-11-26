@@ -2,7 +2,7 @@
 // Locale
 $_['code']                          = 'en';
 $_['direction']                     = 'ltr';
-$_['date_format_short']             = 'd/m/Y';
+$_['date_format_short']             = 'j.m.Y G:i';
 $_['date_format_long']              = 'l dS F Y';
 $_['time_format']                   = 'h:i:s A';
 $_['decimal_point']                 = '.';
@@ -113,6 +113,7 @@ $_['tab_transaction']               = 'Transactions';
 $_['tab_voucher']                   = 'Vouchers';
 $_['tab_voucher_history']           = 'Voucher History';
 $_['tab_price']                     = 'Price';
+$_['tab_sms']                       = 'SMS';
 
 // Error
 $_['error_upload_1']                = 'Warning: The uploaded file exceeds the upload_max_filesize directive in php.ini!';

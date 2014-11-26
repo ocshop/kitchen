@@ -6,6 +6,7 @@ class ControllerAccountVoucher extends Controller {
 		$this->language->load('account/voucher');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setRobots('noindex,follow');
 
 		if (!isset($this->session->data['vouchers'])) {
 			$this->session->data['vouchers'] = array();
@@ -47,6 +48,7 @@ class ControllerAccountVoucher extends Controller {
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['text_description'] = $this->language->get('text_description');
 		$this->data['text_agree'] = $this->language->get('text_agree');
@@ -182,7 +184,8 @@ class ControllerAccountVoucher extends Controller {
 	public function success() {
 		$this->language->load('account/voucher');
 
-		$this->document->setTitle($this->language->get('heading_title')); 
+		$this->document->setTitle($this->language->get('heading_title'));
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['breadcrumbs'] = array();
 
@@ -199,6 +202,8 @@ class ControllerAccountVoucher extends Controller {
 		);
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
+		
+		$this->document->setRobots('noindex,follow');
 
 		$this->data['text_message'] = $this->language->get('text_message');
 

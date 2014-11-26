@@ -61,11 +61,6 @@ class ControllerBlogArticle extends Controller {
 				$url .= '&filter_news_id=' . $this->request->get['filter_news_id'];
 			}	
 						
-			$this->data['breadcrumbs'][] = array(
-				'text'      => $this->language->get('text_search'),
-				'href'      => $this->url->link('article/search', $url),
-				'separator' => $this->language->get('text_separator')
-			); 	
 		}
 		
 		if (isset($this->request->get['article_id'])) {
@@ -101,12 +96,7 @@ class ControllerBlogArticle extends Controller {
 				$url .= '&filter_news_id=' . $this->request->get['filter_news_id'];
 			}
 			
-			$this->data['breadcrumbs'][] = array(
-				'text'      => $article_info['name'],
-				'href'      => $this->url->link('blog/article', $url . '&article_id=' . $this->request->get['article_id']),
-				'separator' => $this->language->get('text_separator')
-			);
-			
+
 			
 			if ($article_info['seo_title']) {
 				$this->document->setTitle($article_info['seo_title']);
@@ -124,7 +114,12 @@ class ControllerBlogArticle extends Controller {
 				$this->data['heading_title'] = $article_info['name'];
 				}
 				
-			$this->document->addStyle('catalog/view/theme/default/stylesheet/blog.css');
+			if (file_exists('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/blog.css')) {
+				$this->document->addStyle('catalog/view/theme/' . $this->config->get('config_template') . '/stylesheet/blog.css');
+			} else {
+				$this->document->addStyle('catalog/view/theme/default/stylesheet/blog.css');
+			}
+			
 			$this->document->addScript('catalog/view/javascript/jquery/colorbox/jquery.colorbox-min.js');
 			$this->document->addStyle('catalog/view/javascript/jquery/colorbox/colorbox.css');
 			
@@ -245,6 +240,8 @@ class ControllerBlogArticle extends Controller {
 				} else {
 					$rating = false;
 				}
+				
+				$stickers = $this->getStickers($result['product_id']) ;
 							
 				$this->data['products'][] = array(
 					'product_id' => $result['product_id'],
@@ -253,6 +250,7 @@ class ControllerBlogArticle extends Controller {
 					'price'   	 => $price,
 					'special' 	 => $special,
 					'rating'     => $rating,
+					'sticker'     => $stickers,
 					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
 					'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 				);
@@ -518,6 +516,34 @@ class ControllerBlogArticle extends Controller {
 		$this->session->data['captcha'] = $captcha->getCode();
 		
 		$captcha->showImage();
+	}
+	
+	private function getStickers($product_id) {
+	
+ 	$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;	
+		
+		if (!$stickers) {
+			return;
+		}
+		
+		$this->data['stickers'] = array();
+		
+		foreach ($stickers as $sticker) {
+			$this->data['stickers'][] = array(
+				'position' => $sticker['position'],
+				'image'    => HTTP_SERVER . 'image/' . $sticker['image']
+			);		
+		}
+
+	
+		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/stickers.tpl')) {
+			$this->template = $this->config->get('config_template') . '/template/product/stickers.tpl';
+		} else {
+			$this->template = 'default/template/product/stickers.tpl';
+		}
+	
+		return $this->render();
+	
 	}
 	
 }

@@ -24,6 +24,10 @@
               <?php } ?></td>
           </tr>
           <tr>
+		    <td><?php echo $entry_date_added; ?></td>
+            <td><input type="text" name="date_added" value="<?php echo $date_added; ?>" class="datetime" /></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_product; ?></td>
             <td><input type="text" name="product" value="<?php echo $product; ?>" />
               <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
@@ -123,5 +127,12 @@ $('input[name=\'product\']').autocomplete({
       	return false;
    	}
 });
-//--></script> 
+//--></script>
+<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
+<script type="text/javascript"><!--
+       $('.datetime').datetimepicker({
+	        dateFormat: 'yy-mm-dd',
+	        timeFormat: 'h:m'
+        });
+//--></script>  
 <?php echo $footer; ?>

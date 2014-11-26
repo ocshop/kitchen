@@ -21,6 +21,7 @@ $_['entry_status']      = 'Статус:';
 $_['entry_text']        = 'Текст:';
 $_['entry_good']        = 'Хорошо';
 $_['entry_bad']         = 'Плохо';
+$_['entry_date_added']  = 'Дата:';
 
 // Error
 $_['error_permission']  = 'У Вас нет прав для изменения отзывов!';

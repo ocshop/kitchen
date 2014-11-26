@@ -23,6 +23,10 @@
               <span class="error"><?php echo $error_author; ?></span>
               <?php } ?></td>
           </tr>
+		  <tr>
+			<td><?php echo $entry_date_added; ?></td>
+            <td><input type="text" name="date_added" value="<?php echo $date_added; ?>" class="datetime" /></td>
+		  </tr>
           <tr>
             <td><?php echo $entry_article; ?></td>
             <td><input type="text" name="article" value="<?php echo $article; ?>" />
@@ -125,5 +129,12 @@ $('input[name=\'article\']').autocomplete({
       	return false;
    	}
 });
+//--></script>
+<script type="text/javascript" src="view/javascript/jquery/ui/jquery-ui-timepicker-addon.js"></script> 
+<script type="text/javascript"><!--
+    $('.datetime').datetimepicker({
+	    dateFormat: 'yy-mm-dd',
+	    timeFormat: 'h:m'
+    });
 //--></script> 
 <?php echo $footer; ?>
