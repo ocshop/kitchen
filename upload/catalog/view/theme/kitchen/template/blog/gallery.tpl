@@ -66,7 +66,7 @@
 			<?php foreach ($products as $product) { ?>
 			<li class="related-info">
 			<?php if ($product['thumb']) { ?>
-			<div class="image">
+			<div class="image"><?php echo $product['sticker']; ?>
 				<a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
 				
 			</div>

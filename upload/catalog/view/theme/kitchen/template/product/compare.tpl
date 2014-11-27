@@ -29,7 +29,7 @@
         <td class="et"><?php echo $text_image; ?></td>
         <?php foreach ($products as $product) { ?>
         <td><?php if ($products[$product['product_id']]['thumb']) { ?>
-          <div class="image2"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" /></div>
+          <div class="image2"><?php echo $product['sticker']; ?><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $products[$product['product_id']]['thumb']; ?>" alt="<?php echo $products[$product['product_id']]['name']; ?>" /></div>
           <?php } ?></td>
         <?php } ?>
       </tr>

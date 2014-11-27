@@ -35,7 +35,7 @@
 						?>
 			<li class="<?php echo $a. $last_line ;?> span<?php echo $spanLine ;?>">
 				<div class="image2">
-					<?php if ($review['prod_thumb']) { ?><a href="<?php echo $review['prod_href']; ?>"><img id="img_<?php echo $review['product_id']; ?>" src="<?php echo $review['prod_thumb']; ?>" alt="<?php echo $review['prod_name']; ?>" /></a><?php } ?>
+					<?php if ($review['prod_thumb']) { ?><?php echo $review['sticker']; ?><a href="<?php echo $review['prod_href']; ?>"><img id="img_<?php echo $review['product_id']; ?>" src="<?php echo $review['prod_thumb']; ?>" alt="<?php echo $review['prod_name']; ?>" /></a><?php } ?>
 				</div>
 
 				<div class="inner">

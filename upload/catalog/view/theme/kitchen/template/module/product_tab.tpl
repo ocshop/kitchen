@@ -54,7 +54,7 @@ $('.tab-contents  li ').last().addClass('last');
 						?>
 						<li class="<?php echo $a. $last_line ;?> span<?php echo $spanLine ;?>">
 							<div class="image2">
-								<?php if ($product['thumb']) { ?><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a><?php } ?>
+								<?php if ($product['thumb']) { ?><?php echo $product['sticker']; ?><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a><?php } ?>
 								
 							</div>
 							<div class="inner">
@@ -118,7 +118,7 @@ $('.tab-contents  li ').last().addClass('last');
 						?>
 						<li class="<?php echo $a. $last_line ;?> span<?php echo $spanLine ;?>">
 							<div class="image2">
-								<?php if ($product['thumb']) { ?><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a><?php } ?>
+								<?php if ($product['thumb']) { ?><?php echo $product['sticker']; ?><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a><?php } ?>
 								
 							</div>
 							<div class="inner">
@@ -183,7 +183,7 @@ $('.tab-contents  li ').last().addClass('last');
 						?>
 			<li class="<?php echo $a. $last_line ;?> span<?php echo $spanLine ;?>">
 				<div class="image2">
-					<?php if ($product['thumb']) { ?><a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name'];?>" /></a><?php } ?>
+					<?php if ($product['thumb']) { ?><?php echo $product['sticker']; ?><a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name'];?>" /></a><?php } ?>
 					
 				</div>
 				<div class="inner">
@@ -248,7 +248,7 @@ $('.tab-contents  li ').last().addClass('last');
 						?>
 			<li class="<?php echo $a. $last_line ;?> span<?php echo $spanLine ;?>">
 				<div class="image2">
-					<?php if ($product['thumb']) { ?><a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a><?php } ?>
+					<?php if ($product['thumb']) { ?><?php echo $product['sticker']; ?><a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a><?php } ?>
 				</div>
 
 				<div class="inner">

@@ -3568,3 +3568,86 @@ label{
 .testimonials #filter .button {
 	float: right;
 }
+/*stiker*/
+.image3,
+.image2,
+.image {
+	position: relative;
+}
+.image3 .corner_0,
+.image3 .corner_1,
+.image3 .corner_2,
+.image3 .corner_3,
+.image2 .corner_0,
+.image2 .corner_1,
+.image2 .corner_2,
+.image2 .corner_3,
+.image .corner_0,
+.image .corner_1,
+.image .corner_2,
+.image .corner_3 {
+	height: 57px;
+	width: 58px;
+	position: absolute;
+	z-index: 99999;
+}
+.image3 .corner_0,
+.image2 .corner_0,
+.image .corner_0 {
+	left: 0px;
+	top: 0px;
+}
+.image3 .corner_1,
+.image2 .corner_1,
+.image .corner_1 {
+	right: 0px;
+	top: 0px;
+}
+.image3 .corner_2,
+.image2 .corner_2,
+.image .corner_2 {
+	left: 0px;
+	bottom: 0px;
+}
+.image3 .corner_3,
+.image2 .corner_3,
+.image .corner_3 {
+	right: 0px;
+	bottom: 0px;
+}
+.box-product .image3 .corner_0 img,
+.box-product .image3 .corner_1 img,
+.box-product .image3 .corner_2 img,
+.box-product .image3 .corner_3 img,
+.box-product .image2 .corner_0 img,
+.box-product .image2 .corner_1 img,
+.box-product .image2 .corner_2 img,
+.box-product .image2 .corner_3 img,
+.box-product .image .corner_0 img,
+.box-product .image .corner_1 img,
+.box-product .image .corner_2 img,
+.box-product .image .corner_3 img {
+	border: none;
+	background: none;
+	padding: 0px;
+	z-index: 999999;
+}
+.box .box-product .image2 .corner_0 img,
+.box .box-product .image2 .corner_1 img,
+.box .box-product .image2 .corner_2 img,
+.box .box-product .image2 .corner_3 img,
+.box .box-product .image .corner_0 img,
+.box .box-product .image .corner_1 img,
+.box .box-product .image .corner_2 img,
+.box .box-product .image .corner_3 img {
+	width: 90%;
+}
+.corner_0 img,
+.corner_1 img,
+.corner_2 img,
+.corner_3 img {
+	border: none;
+	background: none;
+	padding: 0px;
+	z-index: 999999;
+}

@@ -51,7 +51,7 @@
 		?>
 		<li class="span3 <?php echo $a?>">
 		  <?php if ($product['thumb']) { ?>
-		  <div class="image"><a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+		  <div class="image"><?php echo $product['sticker']; ?><a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
 		  <?php } ?>
 		  <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
 		  <div class="description"><?php echo $product['description']; ?></div>

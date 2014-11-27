@@ -41,7 +41,7 @@
 			</div>
 			<?php } ?>
 			<?php if ($thumb) { ?>
-			<div class="image"> 
+			<div class="image"><?php echo $sticker; ?>
 				<a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class = 'cloud-zoom' id='zoom1' rel="position: 'right'" >
 					<img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" />
 				</a>
@@ -424,7 +424,7 @@
 			<?php foreach ($products as $product) { ?>
 			<li class="related-info">
 			<?php if ($product['thumb']) { ?>
-			<div class="image">
+			<div class="image"><?php echo $product['sticker']; ?>
 				<a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
 				
 			</div>
@@ -469,7 +469,7 @@
 			<?php foreach ($products2 as $product) { ?>
 			<li class="related-info">
 			<?php if ($product['thumb']) { ?>
-			<div class="image">
+			<div class="image"><?php echo $product['sticker']; ?>
 				<a href="<?php echo $product['href']; ?>"><img id="img_<?php echo $product['product_id']; ?>" src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
 				
 			</div>

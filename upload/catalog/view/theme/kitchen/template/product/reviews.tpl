@@ -10,7 +10,7 @@
 		<li class="first-in-line">
 		<div class="row">
 		  <?php if ($review['prod_thumb']) { ?>
-		  <div class="image span2"><a href="<?php echo $review['prod_href']; ?>"><img id="img_<?php echo $review['product_id']; ?>" src="<?php echo $review['prod_thumb']; ?>" title="<?php echo $review['prod_name']; ?>" alt="<?php echo $review['prod_name']; ?>" /></a></div>
+		  <div class="image span2"><?php echo $review['sticker']; ?><a href="<?php echo $review['prod_href']; ?>"><img id="img_<?php echo $review['product_id']; ?>" src="<?php echo $review['prod_thumb']; ?>" title="<?php echo $review['prod_name']; ?>" alt="<?php echo $review['prod_name']; ?>" /></a></div>
 		  <?php } ?>
 		  <div class="left span7">
 		  <div class="name"><a href="<?php echo $review['prod_href']; ?>"><?php echo $review['prod_name']; ?></a></div>
