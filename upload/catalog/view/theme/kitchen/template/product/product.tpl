@@ -313,6 +313,45 @@
 			<script type="text/javascript">stLight.options({publisher: "00fa5650-86c7-427f-b3c6-dfae37250d99", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 			<!-- AddThis Button END -->
 		</div>
+		
+		<?php if ($benefits) { ?>
+		<div class="present">
+			<?php foreach ($benefits as $benefit) { ?>	
+				<?php if ($benefit['type'] == 0) { ?>
+					<div>
+						<?php if (!$benefit['link']) { ?>
+						   <span class="thumb"><img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>" /></span>
+						<?php } else { ?> 
+						   <a href="<?php echo $benefit['link']; ?>" target="_blank" title="<?php echo $benefit['name']; ?>"><span class="thumb"><img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>" /></span></a>
+						<?php } ?>
+					</div>
+				<?php } ?> 
+			<?php } ?>
+		</div>
+		<?php } ?>
+		
+		<?php if ($benefits) { ?>
+		<div class="benefits">
+		<div class="benefit-text"><?php echo $text_benefits; ?></div>
+		<ul class="benefit">
+		<?php foreach ($benefits as $benefit) { ?>	
+			<?php if ($benefit['type'] == 1) { ?>
+				<li>
+					<?php if (!$benefit['link']) { ?>
+					   <span class="thumb"><img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>" /></span>
+					<?php } else { ?> 
+					   <a href="<?php echo $benefit['link']; ?>" target="_blank" title="<?php echo $benefit['name']; ?>"><span class="thumb"><img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>" /></span></a>
+					<?php } ?>
+					<?php if ($benefit['description']) { ?>
+						<div class="benefit_description"><?php echo $benefit['description']; ?></div>
+					<?php } ?>
+				</li>
+			<?php } ?> 
+		<?php } ?>
+		</ul>
+		</div>
+		<?php } ?>
+		
 	</div>
   </div>
   </div>
