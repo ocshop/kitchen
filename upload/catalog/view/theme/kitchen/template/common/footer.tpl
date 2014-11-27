@@ -52,7 +52,10 @@
 				<ul>
 				
 				<li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
+				<li><a href="<?php echo $abuses; ?>"><?php echo $text_abuses; ?></a></li>
 				<li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
+				<li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
+				<li><a href="<?php echo $testimonial; ?>"><?php echo $text_testimonial; ?></a></li>
 				<li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
 				</ul>
 			</div>
@@ -60,8 +63,9 @@
 				<h3><?php echo $text_extra; ?></h3>
 				<ul>
 				<li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
-				<li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
 				<li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
+				<li><a href="<?php echo $bestseller; ?>"><?php echo $text_bestseller; ?></a></li>
+				<li><a href="<?php echo $mostviewed; ?>"><?php echo $text_mostviewed; ?></a></li>
 				<li><a href="<?php echo $latest; ?>"><?php echo $text_latest; ?></a></li>
 				</ul>
 			</div>
