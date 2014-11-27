@@ -72,10 +72,10 @@
     <?php foreach ($products as $product) { ?>
     <div>
       <?php if ($product['thumb']) { ?>
-      <div class="image"><a href="<?php echo $product['href']; ?>">
+      <div class="image"><?php echo $product['sticker']; ?><a href="<?php echo $product['href']; ?>">
 	  <img class="imagejail" src="catalog/view/theme/default/image/grey.gif" width="<?php echo $product['thumbwidth']; ?>" height="<?php echo $product['thumbheight']; ?>" data-src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" />
 	  <noscript>
-      <img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" />
+      <img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" />		
 	  </noscript>
 	  </a></div>
       <?php } ?>
@@ -114,6 +114,40 @@
                   <?php } ?>
                   <?php } ?>
 	  </div>
+				<?php if ($product['benefits']) { ?>
+					<div class="benefit-text"><?php echo $text_benefits; ?></div>
+					<div class="benefits">
+					<ul class="benefit">
+					<?php foreach ($product['benefits'] as $benefit) { ?>	
+						<?php if ($benefit['type'] == 1) { ?>
+							<li>
+								<?php if (!$benefit['link']) { ?>
+								   <span class="thumb"><img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>" /></span>
+								<?php } else { ?> 
+								   <a href="<?php echo $benefit['link']; ?>" target="_blank" title="<?php echo $benefit['name']; ?>"><span class="thumb"><img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>" /></span></a>
+								<?php } ?>
+								<?php if ($benefit['description']) { ?>
+								<div class="benefit_description"><?php echo $benefit['description']; ?></div>
+								<?php } ?>
+							</li>
+						<?php } ?> 
+					<?php } ?>
+					</ul>
+					</div>
+					<div class="present">
+						<?php foreach ($product['benefits'] as $benefit) { ?>	
+							<?php if ($benefit['type'] == 0) { ?>
+								<div>
+									<?php if (!$benefit['link']) { ?>
+										<span class="thumb"><img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>" /></span>
+									<?php } else { ?> 
+										<a href="<?php echo $benefit['link']; ?>" target="_blank" title="<?php echo $benefit['name']; ?>"><span class="thumb"><img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>" /></span></a>
+									<?php } ?>
+								</div>
+							<?php } ?> 
+						<?php } ?>
+					</div>
+				<?php } ?>
     </div>
     <?php } ?>
   </div>
@@ -125,7 +159,13 @@
     <div class="right"><a href="<?php echo $continue; ?>" class="button"><?php echo $button_continue; ?></a></div>
   </div>
   <?php } ?>
-  <?php echo $content_bottom; ?></div>
+  <?php echo $content_bottom; ?>
+  <?php if ($description_bottom) { ?>
+	<div class="category-info">
+    <?php echo $description_bottom; ?>
+	</div>
+    <?php } ?>
+	</div>
 <script type="text/javascript"><!--
 function displaybutton (view) {
 	display(view);
@@ -158,6 +198,7 @@ function display(view) {
 			if (rating != null) {
 				html += '<div class="rating">' + rating + '</div>';
 			}
+			
 			html += '</div>';			
 			
 			html += '<div class="left">';
@@ -167,10 +208,26 @@ function display(view) {
 			if (image != null) { 
 				html += '<div class="image">' + image + '</div>';
 			}
-					
-			html += '  <div class="name">' + $(element).find('.name').html() + '</div>';
-			html += '  <div class="description">' + $(element).find('.description').html() + '</div>';
-				
+			html += '<div class="name">' + $(element).find('.name').html() + '</div>';
+			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
+			
+			//benefits
+			var benefit = $(element).find('.benefit').html();
+			
+			if (benefit != null) {
+				html += '<div class="benefit-text"><?php echo $text_benefits; ?></div>';
+				html += '  <div class="benefit">' + $(element).find('.benefit').html() + '</div>';
+			}
+			//benefits
+
+			//benefits present
+			var present = $(element).find('.present').html();
+			
+			if (present != null) {
+				html += '  <div class="present">' + $(element).find('.present').html() + '</div>';
+			}
+			//benefits present
+			
 			html += '</div>';
 						
 			$(element).html(html);
@@ -199,6 +256,22 @@ function display(view) {
 			
 			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
 			
+			//benefits
+			var benefit = $(element).find('.benefit').html();
+			
+			if (benefit != null) {
+				html += '<div class="benefit-text"><?php echo $text_benefits; ?></div>';
+				html += '  <div class="benefit">' + $(element).find('.benefit').html() + '</div>';
+			}
+			//benefits
+			//benefits present
+			var present = $(element).find('.present').html();
+			
+			if (present != null) {
+				html += '  <div class="present">' + $(element).find('.present').html() + '</div>';
+			}
+			//benefits present
+			
 			var price = $(element).find('.price').html();
 			
 			if (price != null) {
@@ -225,5 +298,5 @@ if (view) {
 } else {
 	display('list');
 }
-//--></script> 
+//--></script>
 <?php echo $footer; ?>

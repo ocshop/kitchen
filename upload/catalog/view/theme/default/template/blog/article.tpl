@@ -2,7 +2,7 @@
 <div id="content">
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $i=> $breadcrumb) { ?>
-    <?php if($i+1<count($breadcrumbs)) { ?><?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a><?php } ?>
+    <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
   <h1><?php echo $heading_title; ?></h1>
@@ -50,7 +50,7 @@
       <div>
 		<div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
         <?php if ($product['thumb']) { ?>
-        <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
+        <div class="image"><?php echo $product['sticker']; ?><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
         <?php } ?>
         <div class="rating">
 				  <?php for ($i = 1; $i <= 5; $i++) { ?>

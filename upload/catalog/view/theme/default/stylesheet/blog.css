@@ -9,9 +9,19 @@
 .product-filter .display {
     padding-top: 1px;
 }
+.product-filter .sort,
+.product-filter .limit {
+    padding-top: 2px;
+}
+.product-list .brating,
+.product-list .added-viewed {
+    text-align: right;
+	overflow: hidden;
+}
 .product-list .button-more {
+	line-height: 12px;
 	margin-top: 10px;
-	padding: 3px 8px;
+	padding: 2px 8px 5px;
 }
 .product-grid .brating,
 .product-grid .button-more,
