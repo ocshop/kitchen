@@ -3277,6 +3277,14 @@ CREATE TABLE `oc_product_to_sticker` (
 --
 
 
+INSERT INTO `oc_product_to_sticker` (`product_id`, `sticker_id`, `position`) VALUES
+(42, 16, 0),
+(49, 17, 0),
+(48, 15, 0),
+(47, 13, 0),
+(46, 14, 0),
+(44, 14, 0);
+
 -- --------------------------------------------------------
 
 --
