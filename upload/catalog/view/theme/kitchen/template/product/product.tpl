@@ -12,13 +12,13 @@
 
 		<div class="span3">
 			<h1 class="view"><?php echo $heading_title; ?></h1>
-	
+	<?php if ($images) { ?>
 	<script type="text/javascript">
 		jQuery(document).ready(function(){
 		var myPhotoSwipe = $("#gallery a").photoSwipe({ enableMouseWheel: false , enableKeyboard: false, captionAndToolbarAutoHideDelay:0 });
 		});
 	</script>
-	
+	<?php } ?>
 	<?php $i=1; if ($thumb || $images) { $i++  ?>
 	<div id="full_gallery">
 		<ul id="gallery">
